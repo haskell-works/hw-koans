@@ -2,11 +2,17 @@ module Main where
 
 import           Control.Monad
 import           Data.Monoid
+import qualified Koan.Applicative
+import qualified Koan.Eq
+import qualified Koan.Functor
 import qualified Koan.Ord
 import           Lib
 
 tests =
-  [ Koan.Ord.tests
+  [ Koan.Applicative.tests
+  , Koan.Eq.tests
+  , Koan.Functor.tests
+  , Koan.Ord.tests
   ]
 
 main :: IO ()

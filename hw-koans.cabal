@@ -16,50 +16,19 @@ cabal-version:          >=1.10
 library
   hs-source-dirs:       src
   exposed-modules:      Lib
+                      , Koan.Applicative
+                      , Koan.Eq
+                      , Koan.Functor
+                      , Koan.Ord
   build-depends:        base >= 4.7 && < 5
-  default-language:     Haskell2010
-
-test-suite koan-eq
-  type:                 exitcode-stdio-1.0
-  hs-source-dirs:       koan/eq
-  main-is:              Main.hs
-  other-modules:        Koan.Eq
-  build-depends:        base
                       , hedgehog
-                      , hw-koans
                       , mtl
-  ghc-options:          -threaded -rtsopts -with-rtsopts=-N
   default-language:     Haskell2010
 
-test-suite koan-ord
+test-suite koan
   type:                 exitcode-stdio-1.0
-  hs-source-dirs:       koan/ord
+  hs-source-dirs:       koan
   main-is:              Main.hs
-  other-modules:        Koan.Ord
-  build-depends:        base
-                      , hedgehog
-                      , hw-koans
-                      , mtl
-  ghc-options:          -threaded -rtsopts -with-rtsopts=-N
-  default-language:     Haskell2010
-
-test-suite koan-functor
-  type:                 exitcode-stdio-1.0
-  hs-source-dirs:       koan/functor
-  main-is:              Main.hs
-  other-modules:        Koan.Functor
-  build-depends:        base
-                      , hedgehog
-                      , hw-koans
-                      , mtl
-  ghc-options:          -threaded -rtsopts -with-rtsopts=-N
-  default-language:     Haskell2010
-
-test-suite koan-applicative
-  type:                 exitcode-stdio-1.0
-  hs-source-dirs:       koan/applicative
-  main-is:              Main.hs
-  other-modules:        Koan.Applicative
   build-depends:        base
                       , hedgehog
                       , hw-koans

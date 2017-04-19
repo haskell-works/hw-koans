@@ -41,13 +41,23 @@ prop_min = property $ do
   a `min` maxBound === a
   maxBound `min` a === a
 
+maximum :: Ord a => [a] -> a
+maximum (x:y:xs) = x `max` maximum (y:xs)
+maximum [x]      = x
+
+prop_maximum :: Property
+prop_maximum = property $ do
+  as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
+  (maximum as `elem` as) === True
+  all ((maximum as) >=) as === True
+
 minimum :: Ord a => [a] -> a
 minimum (x:y:xs) = x `min` minimum (y:xs)
 minimum [x]      = x
 
 prop_mininimum :: Property
 prop_mininimum = property $ do
-  as <- forAll $ Gen.list (Range.linear 1 1) (Gen.int (Range.constantBounded))
+  as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
   (minimum as `elem` as) === True
   all ((minimum as) <=) as === True
 

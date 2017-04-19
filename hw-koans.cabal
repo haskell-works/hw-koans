@@ -20,6 +20,7 @@ library
                       , Koan.Eq
                       , Koan.Functor
                       , Koan.Ord
+                      , Koan.Start
   build-depends:        base >= 4.7 && < 5
                       , hedgehog
                       , mtl

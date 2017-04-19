@@ -6,6 +6,7 @@ import qualified Koan.Applicative
 import qualified Koan.Eq
 import qualified Koan.Functor
 import qualified Koan.Ord
+import qualified Koan.Start
 import           Lib
 
 tests =
@@ -13,6 +14,7 @@ tests =
   , Koan.Eq.tests
   , Koan.Functor.tests
   , Koan.Ord.tests
+  , Koan.Start.tests
   ]
 
 main :: IO ()

@@ -60,6 +60,7 @@ prop_elemInt =
     x   <- forAll $ Gen.int (Range.constantBounded)
     xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
     x `elemInt` (filter (/= x) xs) === False
+    x `elem` (x:xs) === True
 
 prop_elem :: Property
 prop_elem =
@@ -67,6 +68,7 @@ prop_elem =
     x   <- forAll $ Gen.enum 'a' 'z'
     xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
     x `elem` (filter (/= x) xs) === False
+    x `elem` (x:xs) === True
 
 tests :: IO Bool
 tests = ($$(checkConcurrent))

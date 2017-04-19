@@ -5,13 +5,15 @@ import           Prelude hiding (max, maximum, min, minimum)
 -- Introduction to generics
 
 max :: Ord a => a -> a -> a
-max = undefined
+max a b = if a > b then a else b
 
 min :: Ord a => a -> a -> a
-min = undefined
+min a b = if a < b then a else b
 
 maximum :: Ord a => [a] -> a
-maximum = undefined
+maximum (x:y:xs) = x `max` maximum (y:xs)
+maximum [x]      = x
 
 minimum :: Ord a => [a] -> a
-minimum = undefined
+minimum (x:y:xs) = x `min` minimum (y:xs)
+minimum [x]      = x

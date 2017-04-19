@@ -3,4 +3,4 @@
 module Koan.Start where
 
 meaningOfLife :: Int
-meaningOfLife = undefined
+meaningOfLife = 42

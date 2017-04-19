@@ -5,23 +5,18 @@ import           Prelude hiding (elem, filter)
 -- Introduction to generics
 
 filterInt :: (Int -> Bool) -> [Int] -> [Int]
-filterInt p (x:xs) = if p x then x:filterInt p xs else filterInt p xs
-filterInt _ []     = []
+filterInt = undefined
 
 filterChar :: (Char -> Bool) -> [Char] -> [Char]
-filterChar p (x:xs) = if p x then x:filterChar p xs else filterChar p xs
-filterChar _ []     = []
+filterChar = undefined
 
 filter :: (a -> Bool) -> [a] -> [a]
-filter p (x:xs) = if p x then x:filter p xs else filter p xs
-filter _ []     = []
+filter = undefined
 
 -- Using the Eq typeclass
 
 elemInt :: Int -> [Int] -> Bool
-elemInt i (x:xs) = if i == x then True else elemInt i xs
-elemInt _ []     = False
+elemInt = undefined
 
 elem :: Eq a => a -> [a] -> Bool
-elem i (x:xs) = if i == x then True else elem i xs
-elem _ []     = False
+elem = undefined

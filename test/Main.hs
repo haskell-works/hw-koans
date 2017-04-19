@@ -1,20 +1,20 @@
 module Main where
 
 import qualified Check.Applicative
+import qualified Check.Eq
+import qualified Check.Functor
+import qualified Check.Ord
+import qualified Check.Start
 import           Control.Monad
 import           Data.Monoid
-import qualified Koan.Eq
-import qualified Koan.Functor
-import qualified Koan.Ord
-import qualified Koan.Start
 import           Lib
 
 tests =
   [ Check.Applicative.tests
-  , Koan.Eq.tests
-  , Koan.Functor.tests
-  , Koan.Ord.tests
-  , Koan.Start.tests
+  , Check.Eq.tests
+  , Check.Functor.tests
+  , Check.Ord.tests
+  , Check.Start.tests
   ]
 
 main :: IO ()

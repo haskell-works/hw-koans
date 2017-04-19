@@ -31,6 +31,10 @@ test-suite koan-test
   hs-source-dirs:       test
   main-is:              Main.hs
   other-modules:        Check.Applicative
+                      , Check.Eq
+                      , Check.Functor
+                      , Check.Ord
+                      , Check.Start
   build-depends:        base
                       , hedgehog
                       , hw-koans

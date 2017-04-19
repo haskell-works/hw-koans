@@ -31,18 +31,16 @@ filter p (x:xs) = if p x then x:filter p xs else filter p xs
 filter _ []     = []
 
 prop_filterChar :: Property
-prop_filterChar =
-  property $ do
-    x   <- forAll $ Gen.enum 'a' 'z'
-    xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
-    length (filterChar (== x) xs) + length (filterChar (/= x) xs) === length xs
+prop_filterChar = property $ do
+  x   <- forAll $ Gen.enum 'a' 'z'
+  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
+  length (filterChar (== x) xs) + length (filterChar (/= x) xs) === length xs
 
 prop_filter :: Property
-prop_filter =
-  property $ do
-    x   <- forAll $ Gen.enum 'a' 'z'
-    xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
-    length (filter (== x) xs) + length (filter (/= x) xs) === length xs
+prop_filter = property $ do
+  x   <- forAll $ Gen.enum 'a' 'z'
+  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
+  length (filter (== x) xs) + length (filter (/= x) xs) === length xs
 
 -- Using the Eq typeclass
 
@@ -55,20 +53,18 @@ elem i (x:xs) = if i == x then True else elem i xs
 elem _ []     = False
 
 prop_elemInt :: Property
-prop_elemInt =
-  property $ do
-    x   <- forAll $ Gen.int (Range.constantBounded)
-    xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
-    x `elemInt` (filter (/= x) xs) === False
-    x `elem` (x:xs) === True
+prop_elemInt = property $ do
+  x   <- forAll $ Gen.int (Range.constantBounded)
+  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
+  x `elemInt` (filter (/= x) xs) === False
+  x `elem` (x:xs) === True
 
 prop_elem :: Property
-prop_elem =
-  property $ do
-    x   <- forAll $ Gen.enum 'a' 'z'
-    xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
-    x `elem` (filter (/= x) xs) === False
-    x `elem` (x:xs) === True
+prop_elem = property $ do
+  x   <- forAll $ Gen.enum 'a' 'z'
+  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
+  x `elem` (filter (/= x) xs) === False
+  x `elem` (x:xs) === True
 
 tests :: IO Bool
 tests = ($$(checkConcurrent))

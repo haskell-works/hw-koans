@@ -15,8 +15,7 @@ cabal-version:          >=1.10
 
 library
   hs-source-dirs:       src
-  exposed-modules:      Lib
-                      , Koan.Applicative
+  exposed-modules:      Koan.Applicative
                       , Koan.Eq
                       , Koan.Functor
                       , Koan.Ord

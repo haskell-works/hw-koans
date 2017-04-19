@@ -7,7 +7,11 @@ import qualified Check.Ord
 import qualified Check.Start
 import           Control.Monad
 import           Data.Monoid
-import           Lib
+
+{- | Returns a count of the number of times the given element occured in the
+given list. -}
+countElem :: Eq a => a -> [a] -> Int
+countElem i = length . filter (i==)
 
 tests =
   [ Check.Applicative.tests

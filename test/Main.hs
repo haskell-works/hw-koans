@@ -6,7 +6,14 @@ import qualified Check.Functor
 import qualified Check.Ord
 import qualified Check.Start
 import           Control.Monad
+import           Data.Maybe
 import           Data.Monoid
+import qualified Koan
+import qualified Koan.Applicative
+import qualified Koan.Eq
+import qualified Koan.Functor
+import qualified Koan.Ord
+import qualified Koan.Start
 
 {- | Returns a count of the number of times the given element occured in the
 given list. -}
@@ -14,19 +21,27 @@ countElem :: Eq a => a -> [a] -> Int
 countElem i = length . filter (i==)
 
 tests =
-  [ Check.Applicative.tests
-  , Check.Eq.tests
-  , Check.Functor.tests
-  , Check.Ord.tests
-  , Check.Start.tests
+  [ (Koan.Applicative.enrolled  , Check.Applicative.tests )
+  , (Koan.Eq.enrolled           , Check.Eq.tests          )
+  , (Koan.Functor.enrolled      , Check.Functor.tests     )
+  , (Koan.Ord.enrolled          , Check.Ord.tests         )
+  , (Koan.Start.enrolled        , Check.Start.tests       )
   ]
 
 main :: IO ()
 main = do
-  results <- forM tests id
-  let successes = countElem True results
-  let failures  = countElem False results
-  let suites = successes + failures
-  if failures == 0
-    then putStrLn $ "All test suites succeeded"
-    else putStrLn $ show failures <> " out of " <> show suites <> " test suites failed"
+  results <- forM tests $ \(enrolled, test) -> do
+    if enrolled || Koan.allEnrolled
+      then Just <$> test else return Nothing
+  let suites = catMaybes results
+  let numSuites = length suites
+  let numSuccesses    = countElem True suites
+  let numFailures     = countElem False suites
+  let numNotEnrolled  = countElem Nothing results
+  putStrLn ""
+  putStrLn ""
+  if numFailures == 0
+    then putStrLn $ "All enrolled " <> show numSuites <> " test suites succeeded"
+    else putStrLn $ show numFailures <> " out of " <> show numSuites <> " test suites failed"
+  when (numNotEnrolled > 0) $ do
+    putStrLn $ show numNotEnrolled <> " suites not enrolled"

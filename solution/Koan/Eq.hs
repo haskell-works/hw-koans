@@ -2,6 +2,9 @@ module Koan.Eq where
 
 import           Prelude hiding (elem, filter)
 
+enrolled :: Bool
+enrolled = False
+
 -- Introduction to generics
 
 filterInt :: (Int -> Bool) -> [Int] -> [Int]

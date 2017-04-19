@@ -30,6 +30,17 @@ test-suite koan-eq
   ghc-options:          -threaded -rtsopts -with-rtsopts=-N
   default-language:     Haskell2010
 
+test-suite koan-ord
+  type:                 exitcode-stdio-1.0
+  hs-source-dirs:       koan/ord
+  main-is:              Main.hs
+  other-modules:        Koan.Ord
+  build-depends:        base
+                      , hedgehog
+                      , hw-koans
+  ghc-options:          -threaded -rtsopts -with-rtsopts=-N
+  default-language:     Haskell2010
+
 test-suite koan-functor
   type:                 exitcode-stdio-1.0
   hs-source-dirs:       koan/functor
@@ -45,6 +56,7 @@ test-suite koan-applicative
   type:                 exitcode-stdio-1.0
   hs-source-dirs:       koan/applicative
   main-is:              Main.hs
+  other-modules:        Koan.Applicative
   build-depends:        base
                       , hedgehog
                       , hw-koans

@@ -19,6 +19,17 @@ library
   build-depends:        base >= 4.7 && < 5
   default-language:     Haskell2010
 
+test-suite koan-eq
+  type:                 exitcode-stdio-1.0
+  hs-source-dirs:       koan/eq
+  main-is:              Main.hs
+  other-modules:        Koan.Eq
+  build-depends:        base
+                      , hedgehog
+                      , hw-koans
+  ghc-options:          -threaded -rtsopts -with-rtsopts=-N
+  default-language:     Haskell2010
+
 test-suite koan-functor
   type:                 exitcode-stdio-1.0
   hs-source-dirs:       koan/functor

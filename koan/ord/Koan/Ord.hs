@@ -4,10 +4,12 @@
 
 module Koan.Ord where
 
+import           Control.Monad.Trans
+import           Data.Monoid
 import           Hedgehog
-import qualified Hedgehog.Gen   as Gen
-import qualified Hedgehog.Range as Range
-import           Prelude        hiding (max, min)
+import qualified Hedgehog.Gen        as Gen
+import qualified Hedgehog.Range      as Range
+import           Prelude             hiding (max, maximum, min, minimum)
 
 -- Introduction to generics
 
@@ -38,6 +40,16 @@ prop_min = property $ do
   minBound `min` a === minBound
   a `min` maxBound === a
   maxBound `min` a === a
+
+minimum :: Ord a => [a] -> a
+minimum (x:y:xs) = x `min` minimum (y:xs)
+minimum [x]      = x
+
+prop_mininimum :: Property
+prop_mininimum = property $ do
+  as <- forAll $ Gen.list (Range.linear 1 1) (Gen.int (Range.constantBounded))
+  (minimum as `elem` as) === True
+  all ((minimum as) <=) as === True
 
 tests :: IO Bool
 tests = ($$(checkConcurrent))

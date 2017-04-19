@@ -7,7 +7,7 @@ module Koan.Eq where
 import           Hedgehog
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
-import           Prelude        hiding (filter)
+import           Prelude        hiding (elem, filter)
 
 -- Introduction to generics
 
@@ -43,6 +43,30 @@ prop_filter =
     x   <- forAll $ Gen.enum 'a' 'z'
     xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
     length (filter (== x) xs) + length (filter (/= x) xs) === length xs
+
+-- Using the Eq typeclass
+
+elemInt :: Int -> [Int] -> Bool
+elemInt i (x:xs) = if i == x then True else elemInt i xs
+elemInt _ []     = False
+
+elem :: Eq a => a -> [a] -> Bool
+elem i (x:xs) = if i == x then True else elem i xs
+elem _ []     = False
+
+prop_elemInt :: Property
+prop_elemInt =
+  property $ do
+    x   <- forAll $ Gen.int (Range.constantBounded)
+    xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
+    x `elemInt` (filter (/= x) xs) === False
+
+prop_elem :: Property
+prop_elem =
+  property $ do
+    x   <- forAll $ Gen.enum 'a' 'z'
+    xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
+    x `elem` (filter (/= x) xs) === False
 
 tests :: IO Bool
 tests = ($$(checkConcurrent))

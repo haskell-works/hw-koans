@@ -1,8 +1,8 @@
 module Main where
 
+import qualified Check.Applicative
 import           Control.Monad
 import           Data.Monoid
-import qualified Koan.Applicative
 import qualified Koan.Eq
 import qualified Koan.Functor
 import qualified Koan.Ord
@@ -10,7 +10,7 @@ import qualified Koan.Start
 import           Lib
 
 tests =
-  [ Koan.Applicative.tests
+  [ Check.Applicative.tests
   , Koan.Eq.tests
   , Koan.Functor.tests
   , Koan.Ord.tests

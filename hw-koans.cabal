@@ -26,10 +26,11 @@ library
                       , mtl
   default-language:     Haskell2010
 
-test-suite koan
+test-suite koan-test
   type:                 exitcode-stdio-1.0
-  hs-source-dirs:       koan
+  hs-source-dirs:       test
   main-is:              Main.hs
+  other-modules:        Check.Applicative
   build-depends:        base
                       , hedgehog
                       , hw-koans

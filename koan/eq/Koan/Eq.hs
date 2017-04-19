@@ -1,3 +1,5 @@
+-- {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
 
 module Koan.Eq where
@@ -5,6 +7,7 @@ module Koan.Eq where
 import           Hedgehog
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
+import           Prelude        (Bool, IO, reverse, ($))
 
 prop_reverse :: Property
 prop_reverse =
@@ -13,5 +16,4 @@ prop_reverse =
     reverse (reverse xs) === xs
 
 tests :: IO Bool
-tests =
-  $$(checkConcurrent)
+tests = ($$(checkConcurrent))

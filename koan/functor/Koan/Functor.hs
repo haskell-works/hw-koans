@@ -13,5 +13,4 @@ prop_reverse =
     reverse (reverse xs) === xs
 
 tests :: IO Bool
-tests =
-  $$(checkConcurrent)
+tests = ($$(checkConcurrent))

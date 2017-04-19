@@ -1,6 +1,8 @@
 module Lib
-    ( someFunc
+    ( countElem
     ) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+{- | Returns a count of the number of times the given element occured in the
+given list. -}
+countElem :: Eq a => a -> [a] -> Int
+countElem i = length . filter (i==)

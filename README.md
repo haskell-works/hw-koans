@@ -5,5 +5,5 @@
 Run:
 
 ```
-stack test hw-koans:test:hw-koans-ex-functor
+stack test hw-koans:test:koan-functor
 ```

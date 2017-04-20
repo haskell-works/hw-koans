@@ -1,6 +1,6 @@
 module Koan.Eq where
 
-import           Prelude hiding (elem, filter, nub)
+import           Prelude hiding (elem, filter)
 
 enrolled :: Bool
 enrolled = False
@@ -33,3 +33,8 @@ nub :: Eq a => [a] -> [a]
 nub xs = go xs []
   where go (x:xs) rs = if x `elem` rs then go xs rs else go xs (x:rs)
         go [] rs     = reverse rs
+
+isPrefixOf :: Eq a => [a] -> [a] -> Bool
+isPrefixOf [] _          = True
+isPrefixOf _  []         = False
+isPrefixOf (x:xs) (y:ys) = x == y && isPrefixOf xs ys

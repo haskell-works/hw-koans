@@ -6,22 +6,22 @@ enrolled :: Bool
 enrolled = False
 
 head :: [a] -> a
-head = undefined
+head = error "TODO: implement head"
 
 tail :: [a] -> [a]
-tail = undefined
+tail = error "TODO: implement tail"
 
 last :: [a] -> a
-last = undefined
+last = error "TODO: implement last"
 
 reverse :: [a] -> [a]
-reverse = undefined
+reverse = error "TODO: implement reverse"
 
 (++) :: [a] -> [a] -> [a]
-(++) = undefined
+(++) = error "TODO: implement (++)"
 
 concat :: [[a]] -> [a]
-concat = undefined
+concat = error "TODO: implement concat"
 
 tails :: [a] -> [[a]]
-tails = undefined
+tails = error "TODO: implement tails"

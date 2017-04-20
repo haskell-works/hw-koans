@@ -7,23 +7,23 @@ enrolled = False
 
 -- | Get the greater of two values
 max :: Ord a => a -> a -> a
-max = error "Implement max"
+max = error "TODO: implement max"
 
 -- | Get the lesser of two values
 min :: Ord a => a -> a -> a
-min = error "Implement min"
+min = error "TODO: implement min"
 
 -- | Get the greatest element of the list.  The list must be finite and non-empty.
 maximum :: Ord a => [a] -> a
-maximum = error "Implement maximum"
+maximum = error "TODO: implement maximum"
 
 -- | Get the least element of the list.  The list must be finite and non-empty.
 minimum :: Ord a => [a] -> a
-minimum = error "Implement minimum"
+minimum = error "TODO: implement minimum"
 
 -- | The 'sort' function implements a stable sorting algorithm.
 sort :: Ord a => [a] -> [a]
-sort = error "Implement sort"
+sort = error "TODO: implement sort"
 
 -- | The 'insert' function takes an element and a list and inserts the
 -- element into the list at the first position where it is less
@@ -32,4 +32,4 @@ sort = error "Implement sort"
 -- It is a special case of 'insertBy', which allows the programmer to
 -- supply their own comparison function.
 insert :: Ord a => a -> [a] -> [a]
-insert = error "Implement insert"
+insert = error "TODO: implement insert"

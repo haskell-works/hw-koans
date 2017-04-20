@@ -8,24 +8,24 @@ enrolled = False
 -- Introduction to generics
 
 filterInt :: (Int -> Bool) -> [Int] -> [Int]
-filterInt = error "Implement filterInt"
+filterInt = error "TODO: implement filterInt"
 
 filterChar :: (Char -> Bool) -> [Char] -> [Char]
-filterChar = error "Implement filterChar"
+filterChar = error "TODO: implement filterChar"
 
 filter :: (a -> Bool) -> [a] -> [a]
-filter = error "Implement filter"
+filter = error "TODO: implement filter"
 
 -- Using the Eq typeclass
 
 elemInt :: Int -> [Int] -> Bool
-elemInt = error "Implement elemInt"
+elemInt = error "TODO: implement elemInt"
 
 elem :: Eq a => a -> [a] -> Bool
-elem = error "Implement elem"
+elem = error "TODO: implement elem"
 
 nub :: Eq a => [a] -> [a]
-nub = error "Implement nub"
+nub = error "TODO: implement nub"
 
 isPrefixOf :: Eq a => [a] -> [a] -> Bool
-isPrefixOf = error "Implement isPrefixOf"
+isPrefixOf = error "TODO: implement isPrefixOf"

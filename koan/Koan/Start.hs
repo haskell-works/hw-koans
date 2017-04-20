@@ -6,4 +6,4 @@ enrolled :: Bool
 enrolled = False
 
 meaningOfLife :: Int
-meaningOfLife = error "Implement meaningOfLife"
+meaningOfLife = error "TODO: implement meaningOfLife"

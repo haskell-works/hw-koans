@@ -8,8 +8,7 @@ import           Hedgehog
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
 import           Koan.Functor   as K
-import           Prelude
-import qualified Prelude        as P
+import           Prelude        as P
 
 instance K.Functor Maybe where
   fmap f (Just a) = Just (f a)

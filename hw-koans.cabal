@@ -19,6 +19,7 @@ library
                       , Koan.Applicative
                       , Koan.Eq
                       , Koan.Functor
+                      , Koan.List
                       , Koan.Ord
                       , Koan.Start
   build-depends:        base >= 4.7 && < 5
@@ -33,6 +34,7 @@ test-suite koan-test
   other-modules:        Check.Applicative
                       , Check.Eq
                       , Check.Functor
+                      , Check.List
                       , Check.Ord
                       , Check.Start
   build-depends:        base

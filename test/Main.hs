@@ -3,6 +3,7 @@ module Main where
 import qualified Check.Applicative
 import qualified Check.Eq
 import qualified Check.Functor
+import qualified Check.List
 import qualified Check.Ord
 import qualified Check.Start
 import           Control.Monad
@@ -12,6 +13,7 @@ import qualified Koan
 import qualified Koan.Applicative
 import qualified Koan.Eq
 import qualified Koan.Functor
+import qualified Koan.List
 import qualified Koan.Ord
 import qualified Koan.Start
 
@@ -24,6 +26,7 @@ tests =
   [ (Koan.Applicative.enrolled  , Check.Applicative.tests )
   , (Koan.Eq.enrolled           , Check.Eq.tests          )
   , (Koan.Functor.enrolled      , Check.Functor.tests     )
+  , (Koan.List.enrolled         , Check.List.tests        )
   , (Koan.Ord.enrolled          , Check.Ord.tests         )
   , (Koan.Start.enrolled        , Check.Start.tests       )
   ]

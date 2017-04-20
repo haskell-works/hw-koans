@@ -5,9 +5,11 @@ import           Prelude hiding (max, maximum, min, minimum)
 enrolled :: Bool
 enrolled = False
 
+-- | Get the greater of two values
 max :: Ord a => a -> a -> a
 max = undefined
 
+-- | Get the lesser of two values
 min :: Ord a => a -> a -> a
 min = undefined
 

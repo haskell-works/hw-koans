@@ -4,13 +4,13 @@
 
 module Check.Ord where
 
-import           Control.Monad.Trans
-import           Data.Monoid
+import qualified Data.List      as P
 import           Hedgehog
-import qualified Hedgehog.Gen        as Gen
-import qualified Hedgehog.Range      as Range
-import           Koan.Ord
-import           Prelude             hiding (max, maximum, min, minimum)
+import qualified Hedgehog.Gen   as Gen
+import qualified Hedgehog.Range as Range
+import           Koan.Ord       as K
+import           Prelude        hiding (max, maximum, min, minimum)
+import qualified Prelude        as P
 
 prop_max :: Property
 prop_max = property $ do
@@ -45,6 +45,11 @@ prop_mininimum = property $ do
   as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
   (minimum as `elem` as) === True
   all ((minimum as) <=) as === True
+
+prop_sort :: Property
+prop_sort = property $ do
+  as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
+  K.sort as === P.sort as
 
 tests :: IO Bool
 tests = ($$(checkConcurrent))

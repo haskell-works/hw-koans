@@ -24,4 +24,4 @@ cabal.sandbox.config
 /*.json.ib
 /*.json.bp
 
-.stackwork
+.stack-work

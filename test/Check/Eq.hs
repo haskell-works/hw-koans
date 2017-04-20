@@ -47,5 +47,11 @@ prop_nub = property $ do
   xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
   (K.nub xs) === (P.nub xs)
 
+prop_isPrefixOf :: Property
+prop_isPrefixOf = property $ do
+  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
+  ys  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
+  (xs `K.isPrefixOf` ys) === (xs `P.isPrefixOf` ys)
+
 tests :: IO Bool
 tests = ($$(checkConcurrent))

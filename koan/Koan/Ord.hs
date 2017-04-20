@@ -18,3 +18,6 @@ maximum = undefined
 
 minimum :: Ord a => [a] -> a
 minimum = undefined
+
+sort :: Ord a => [a] -> [a]
+sort = undefined

@@ -26,3 +26,6 @@ elem = undefined
 
 nub :: Eq a => [a] -> [a]
 nub = undefined
+
+isPrefixOf :: Eq a => [a] -> [a] -> Bool
+isPrefixOf = undefined

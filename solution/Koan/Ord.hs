@@ -20,3 +20,7 @@ maximum [x]      = x
 minimum :: Ord a => [a] -> a
 minimum (x:y:xs) = x `min` minimum (y:xs)
 minimum [x]      = x
+
+sort :: Ord a => [a] -> [a]
+sort (pivot:xs) = sort [x | x <- xs, x < pivot] ++ [pivot] ++ sort [x | x <- xs, x >= pivot]
+sort []         = []

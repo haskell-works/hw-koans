@@ -31,10 +31,15 @@ elem _ []     = False
 
 nub :: Eq a => [a] -> [a]
 nub xs = go xs []
-  where go (x:xs) rs = if x `elem` rs then go xs rs else go xs (x:rs)
+  where go (y:ys) rs = if y `elem` rs then go ys rs else go ys (y:rs)
         go [] rs     = reverse rs
 
 isPrefixOf :: Eq a => [a] -> [a] -> Bool
 isPrefixOf [] _          = True
 isPrefixOf _  []         = False
 isPrefixOf (x:xs) (y:ys) = x == y && isPrefixOf xs ys
+
+elemIndex       :: Eq a => a -> [a] -> Maybe Int
+elemIndex e = go 0
+  where go n (x:xs) = if x == e then Just n else go (n + 1) xs
+        go _ []     = Nothing

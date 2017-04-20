@@ -20,8 +20,10 @@ library
                       , Koan.Eq
                       , Koan.Functor
                       , Koan.List
+                      , Koan.Maybe
                       , Koan.Ord
                       , Koan.Start
+                      , Koan.Simple
   build-depends:        base >= 4.7 && < 5
                       , hedgehog
                       , mtl

@@ -46,6 +46,12 @@ prop_mininimum = property $ do
   (minimum as `elem` as) === True
   all ((minimum as) <=) as === True
 
+prop_insert :: Property
+prop_insert = property $ do
+  a   <- forAll $ Gen.int (Range.constantBounded)
+  as  <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
+  K.insert a as === P.insert a as
+
 prop_sort :: Property
 prop_sort = property $ do
   as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))

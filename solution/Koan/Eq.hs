@@ -1,6 +1,6 @@
 module Koan.Eq where
 
-import           Prelude hiding (elem, filter)
+import           Prelude hiding (elem, filter, nub)
 
 enrolled :: Bool
 enrolled = False
@@ -28,3 +28,8 @@ elemInt _ []     = False
 elem :: Eq a => a -> [a] -> Bool
 elem i (x:xs) = if i == x then True else elem i xs
 elem _ []     = False
+
+nub :: Eq a => [a] -> [a]
+nub xs = go xs []
+  where go (x:xs) rs = if x `elem` rs then go xs rs else go xs (x:rs)
+        go [] rs     = reverse rs

@@ -23,3 +23,6 @@ elemInt = undefined
 
 elem :: Eq a => a -> [a] -> Bool
 elem = undefined
+
+nub :: Eq a => [a] -> [a]
+nub = undefined

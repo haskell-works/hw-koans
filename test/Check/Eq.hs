@@ -4,6 +4,7 @@
 
 module Check.Eq where
 
+import qualified Data.List      as P
 import           Hedgehog
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
@@ -40,6 +41,11 @@ prop_elem = property $ do
   x   <- forAll $ Gen.enum 'a' 'z'
   xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
   (x `K.elem` xs) === (x `P.elem` xs)
+
+prop_nub :: Property
+prop_nub = property $ do
+  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.enum 'a' 'z')
+  (K.nub xs) === (P.nub xs)
 
 tests :: IO Bool
 tests = ($$(checkConcurrent))

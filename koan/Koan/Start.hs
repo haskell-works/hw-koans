@@ -6,4 +6,4 @@ enrolled :: Bool
 enrolled = False
 
 meaningOfLife :: Int
-meaningOfLife = undefined
+meaningOfLife = error "Implement meaningOfLife"

@@ -8,24 +8,24 @@ enrolled = False
 -- Introduction to generics
 
 filterInt :: (Int -> Bool) -> [Int] -> [Int]
-filterInt = undefined
+filterInt = error "Implement filterInt"
 
 filterChar :: (Char -> Bool) -> [Char] -> [Char]
-filterChar = undefined
+filterChar = error "Implement filterChar"
 
 filter :: (a -> Bool) -> [a] -> [a]
-filter = undefined
+filter = error "Implement filter"
 
 -- Using the Eq typeclass
 
 elemInt :: Int -> [Int] -> Bool
-elemInt = undefined
+elemInt = error "Implement elemInt"
 
 elem :: Eq a => a -> [a] -> Bool
-elem = undefined
+elem = error "Implement elem"
 
 nub :: Eq a => [a] -> [a]
-nub = undefined
+nub = error "Implement nub"
 
 isPrefixOf :: Eq a => [a] -> [a] -> Bool
-isPrefixOf = undefined
+isPrefixOf = error "Implement isPrefixOf"

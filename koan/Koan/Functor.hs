@@ -22,13 +22,13 @@ class Functor f  where
   -- The default definition is @'fmap' . 'const'@, but this may be
   -- overridden with a more efficient version.
   (<$) :: a -> f b -> f a
-  (<$) =  undefined
+  (<$) = error "Implement (<$)"
 
 (<$>) :: Functor f => (a -> b) -> f a -> f b
-(<$>) = undefined
+(<$>) = error "Implement (<$>)"
 
 ($>) :: Functor f => f a -> b -> f b
-($>) = undefined
+($>) = error "Implement ($>)"
 
 void :: Functor f => f a -> f ()
-void x = undefined
+void = error "Implement void"

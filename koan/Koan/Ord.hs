@@ -7,23 +7,23 @@ enrolled = False
 
 -- | Get the greater of two values
 max :: Ord a => a -> a -> a
-max = undefined
+max = error "Implement max"
 
 -- | Get the lesser of two values
 min :: Ord a => a -> a -> a
-min = undefined
+min = error "Implement min"
 
 -- | Get the greatest element of the list.  The list must be finite and non-empty.
 maximum :: Ord a => [a] -> a
-maximum = undefined
+maximum = error "Implement maximum"
 
 -- | Get the least element of the list.  The list must be finite and non-empty.
 minimum :: Ord a => [a] -> a
-minimum = undefined
+minimum = error "Implement minimum"
 
 -- | The 'sort' function implements a stable sorting algorithm.
 sort :: Ord a => [a] -> [a]
-sort = undefined
+sort = error "Implement sort"
 
 -- | The 'insert' function takes an element and a list and inserts the
 -- element into the list at the first position where it is less
@@ -32,4 +32,4 @@ sort = undefined
 -- It is a special case of 'insertBy', which allows the programmer to
 -- supply their own comparison function.
 insert :: Ord a => a -> [a] -> [a]
-insert = undefined
+insert = error "Implement insert"

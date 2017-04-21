@@ -5,30 +5,28 @@
 module Check.List where
 
 import qualified Data.List      as P
-import           Hedgehog
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
+import qualified Prelude        as P
+
+import           Hedgehog
 import           Koan.List      as K
 import           Prelude        hiding (elem, filter)
-import qualified Prelude        as P
 
 prop_head :: Property
 prop_head = property $ do
-  x   <- forAll $ Gen.int (Range.constantBounded)
-  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
-  K.head (x:xs) === P.head (x:xs)
+  xs  <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
+  K.head xs === P.head xs
 
 prop_tail :: Property
 prop_tail = property $ do
-  x   <- forAll $ Gen.int (Range.constantBounded)
-  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
-  K.tail (x:xs) === P.tail (x:xs)
+  xs  <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
+  K.tail xs === P.tail xs
 
 prop_last :: Property
 prop_last = property $ do
-  x   <- forAll $ Gen.int (Range.constantBounded)
-  xs  <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
-  K.tail (x:xs) === P.tail (x:xs)
+  xs  <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
+  K.last xs === P.last xs
 
 prop_reverse :: Property
 prop_reverse = property $ do

@@ -13,37 +13,29 @@ module Koan.Simple where
 
 -- This is just hiding some of the standard library, as we're implemeting a lot
 -- of it as an exercise.
-import Prelude hiding
-  ( id, const, (.), flip, ($)
-  , length, (!!), (++), reverse
-  , repeat, iterate, take, drop, takeWhile, dropWhile
-  , map, filter, foldl, foldr, any, all, zipWith
-  , curry, uncurry
-  , elem
-  , max, min, maximum, minimum
-  )
+import           Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
 
 -- There is only a single possible definition of the first two functions.
 -- Try to work out what they need to do based on their type signature alone.
 id :: a -> a
-id a = undefined
+id = error "TODO: Implement id"
 
 const :: a -> b -> a
-const a b = undefined
+const = error "TODO: Implement const"
 
 -- This is function composition, i.e. (f . g)(x) == f(g(x))
 (.) :: (b -> c) -> (a -> b) -> a -> c
-f . g = undefined
+(.) = error "TODO: Implement (.)"
 
 -- This flips the argument order of a function, i.e.
 -- f(a,b) == (flip f)(b,a)
 flip :: (a -> b -> c) -> b -> a -> c
-flip f b a = undefined
+flip = error "TODO: Implement flip"
 
 -- This is function application (i.e. calling a function), but with a lower
 -- precedence than normal
 ($) :: (a -> b) -> a -> b
-f $ a = undefined
+($) = error "TODO: Implement ($)"
 
 -- Precedence definition for ($). You don't need to do anything here.
 infixr 0 $
@@ -56,13 +48,13 @@ infixr 0 $
 
 -- Return the length of a list
 length :: [a] -> Int
-length xs = undefined
+length = error "TODO: Implement length"
 
 -- This returns the element at a specific index in a list (if it exists),
 -- or nothing otherwise.
 -- You'll probably need to use pattern matching.
 (!!) :: [a] -> Int -> Maybe a
-list !! i = undefined
+(!!) = error "TODO: Implement (!!)"
 
 -- ASIDE: In the standard library, (!!) has the type `[a] -> Int -> a`
 -- meaning it fails (crashes the program) if the index you request does not
@@ -71,14 +63,14 @@ list !! i = undefined
 -- This concatenates two lists together.
 -- Again, you'll probably need to use pattern matching.
 (++) :: [a] -> [a] -> [a]
-xs ++ ys = undefined
+(++) = error "TODO: Implement (++)"
 
 -- Reverse a list.
 -- Note that while you can get a "correct" solution using (++), it will be very
 -- inefficient. Try to implement it without that. You may need a helper
 -- function or a sub function.
 reverse :: [a] -> [a]
-reverse xs = undefined
+reverse = error "TODO: Implement reverse"
 
 --------------------------------------------------------------------------------
 -- Infinite lists
@@ -88,30 +80,30 @@ reverse xs = undefined
 
 -- repeat the input forever.
 repeat :: a -> [a]
-repeat x = undefined
+repeat = error "TODO: Implement repeat"
 
 -- Return a list of the result of repeatedly applying f to x
 -- i.e iterate f x = [x, f x, f (f x), ...]
 iterate :: (a -> a) -> a -> [a]
-iterate f x = undefined
+iterate = error "TODO: Implement iterate"
 
 -- Returns the first `n` elements of a list.
 -- If there are less than `n` elements, just return all of them.
 take :: Int -> [a] -> [a]
-take n xs = undefined
+take = error "TODO: Implement take"
 
 -- Similar to the above, but drop the first `n` elements and return the rest.
 -- If there are less than `n` elements, return an empty list.
 drop :: Int -> [a] -> [a]
-drop n xs = undefined
+drop = error "TODO: Implement drop"
 
 -- Take as long as the elements in the list satisfy the given predicate.
 takeWhile :: (a -> Bool) -> [a] -> [a]
-takeWhile p xs = undefined
+takeWhile = error "TODO: Implement takeWhile"
 
 -- You get the idea.
 dropWhile :: (a -> Bool) -> [a] -> [a]
-dropWhile p xs = undefined
+dropWhile = error "TODO: Implement dropWhile"
 
 --------------------------------------------------------------------------------
 -- Higher order functions on lists
@@ -120,33 +112,33 @@ dropWhile p xs = undefined
 -- These are the classic map, filter, and fold (a.k.a reduce) for lists.
 
 map :: (a -> b) -> [a] -> [b]
-map f xs = undefined
+map = error "TODO: Implement map"
 
 filter :: (a -> Bool) -> [a] -> [a]
-filter p xs = undefined
+filter = error "TODO: Implement filter"
 
 -- The 'l' in `foldl` indicates that it is left-associative.
 foldl :: (b -> a -> b) -> b -> [a] -> b
-foldl op acc xs = undefined
+foldl = error "TODO: Implement fold"
 
 -- Similarly, the 'r' indicates `foldr` is right associative.
 foldr :: (a -> b -> b) -> b -> [a] -> b
-foldr op acc xs = undefined
+foldr = error "TODO: Implement foldr"
 
 -- Functions which tell you whether any or all of the elements of a list
 -- satisfy a given predicate.
 any :: (a -> Bool) -> [a] -> Bool
-any p xs = undefined
+any = error "TODO: Implement any"
 
 all :: (a -> Bool) -> [a] -> Bool
-all p xs = undefined
+all = error "TODO: Implement all"
 
 -- This should take a binary (i.e. two argument) function, and two lists, and
 -- "zip" the elements of the list together pairwise using that function.
 -- If one input is shorter than the other, it should discard the excess
 -- elements of the longer list.
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
-zipWith op xs ys = undefined
+zipWith = error "TODO: Implement zipWith"
 
 --------------------------------------------------------------------------------
 -- Currying
@@ -155,11 +147,11 @@ zipWith op xs ys = undefined
 -- Turn an uncurried function (i.e. one that takes a tuple as its argument)
 -- and curry it (i.e. make it take its arguments one-by-one)
 curry :: ((a, b) -> c) -> a -> b -> c
-curry f a b = undefined
+curry = error "TODO: Implement curry"
 
 -- The inverse of the above.
 uncurry :: (a -> b -> c) -> (a, b) -> c
-uncurry f tpl = undefined
+uncurry = error "TODO: Implement uncurry"
 
 --------------------------------------------------------------------------------
 -- Functions require Equality
@@ -167,7 +159,7 @@ uncurry f tpl = undefined
 
 -- Determines if an element is in a list
 elem :: Eq a => a -> [a] -> Bool
-elem e xs = undefined
+elem = error "TODO: Implement elem"
 
 --------------------------------------------------------------------------------
 -- Functions require Ordering
@@ -176,19 +168,19 @@ elem e xs = undefined
 -- Take to guess what these should do!
 
 max :: Ord a => a -> a -> a
-max x y = undefined
+max = error "TODO: Implement max"
 
 min :: Ord a => a -> a -> a
-min x y = undefined
+min = error "TODO: Implement min"
 
 -- Note: These can fail if the list is empty.
 -- We'll alow that in thise case. You can use the `error` function to return
 -- an error.
 maximum :: Ord a => [a] -> a
-maximum xs = undefined
+maximum = error "TODO: Implement maximum"
 
 minimum :: Ord a => [a] -> a
-minimum xs = undefined
+minimum = error "TODO: Implement minimum"
 
 --------------------------------------------------------------------------------
 -- Miscellaneous Exercises
@@ -197,4 +189,4 @@ minimum xs = undefined
 -- Define a list of all fibonacci numbers.
 -- (Hint: Try to use the `zipWith` function defined above)
 fibonacci :: [Int]
-fibonacci = undefined
+fibonacci = error "TODO: Implement fibonacci"

@@ -1,13 +1,20 @@
 module Koan.Maybe where
 
-import           Prelude hiding (Maybe (..))
+import           Prelude hiding ()
+
+enrolled :: Bool
+enrolled = False
 
 -- Define a "Maybe" data type.
 -- It should represent the concept of there being zero or exactly one instance
 -- of a piece of data.
 -- In other words, it should represent whether a piece of data is exists or not.
 
+{-
+
 data Maybe a = Undefined
+
+-}
 
 -- This should return the contents of the 'Maybe' if it exists, otherwise
 -- it should return the provided value.

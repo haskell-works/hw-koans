@@ -1,11 +1,18 @@
 module Koan.Maybe where
 
-import Prelude hiding (Maybe(..))
+import           Prelude hiding ()
+
+enrolled :: Bool
+enrolled = False
+
+{-
 
 data Maybe a = Nothing | Just a
 
+-}
+
 orElse :: Maybe a -> a -> a
-orElse Nothing x = x
+orElse Nothing x  = x
 orElse (Just a) _ = a
 
 orMaybe :: Maybe a -> Maybe a -> Maybe a
@@ -17,7 +24,7 @@ mapMaybe _  Nothing = Nothing
 mapMaybe f (Just x) = Just (f x)
 
 concatMaybes :: [Maybe a] -> [a]
-concatMap [] = []
+concatMaybes [] = []
 concatMaybes (mx:mxs) = case mx of
   Nothing -> concatMaybes mxs
   Just x  -> x : concatMaybes mxs
@@ -38,5 +45,5 @@ applyMaybe _        Nothing  = Nothing
 applyMaybe (Just f) (Just x) = Just (f x)
 
 bindMaybe :: (a -> Maybe b) -> Maybe a -> Maybe b
-bindMaybe _ Nothing = Nothing
+bindMaybe _ Nothing  = Nothing
 bindMaybe f (Just x) = f x

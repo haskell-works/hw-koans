@@ -1,5 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
-
 module Koan.Start where
 
 enrolled :: Bool

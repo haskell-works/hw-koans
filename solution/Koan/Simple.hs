@@ -1,20 +1,12 @@
 module Koan.Simple where
 
-import Prelude hiding
-  ( id, const, (.), flip, ($)
-  , length, (!!), (++), reverse
-  , repeat, iterate, take, drop, takeWhile, dropWhile
-  , map, filter, foldl, foldr, any, all, zipWith
-  , curry, uncurry
-  , elem
-  , max, min, maximum, minimum
-  )
+import           Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
 
 id :: a -> a
 id a = a
 
 const :: a -> b -> a
-const a b = a
+const a _ = a
 
 (.) :: (b -> c) -> (a -> b) -> a -> c
 f . g = \x -> f (g x)
@@ -32,7 +24,7 @@ infixr 0 $
 --------------------------------------------------------------------------------
 
 length :: [a] -> Int
-length [] = 0
+length []     = 0
 length (x:xs) = 1 + length xs
 
 (!!) :: [a] -> Int -> Maybe a
@@ -75,7 +67,7 @@ drop n xs
 
 takeWhile :: (a -> Bool) -> [a] -> [a]
 takeWhile p (x:xs) | p x = x : takeWhile p xs
-takeWhile _ _ = []
+takeWhile _ _      = []
 
 dropWhile :: (a -> Bool) -> [a] -> [a]
 dropWhile _ []  = []
@@ -88,7 +80,7 @@ dropWhile p (x:xs)
 --------------------------------------------------------------------------------
 
 map :: (a -> b) -> [a] -> [b]
-map _ [] = []
+map _ []     = []
 map f (x:xs) = f x : map f xs
 
 filter :: (a -> Bool) -> [a] -> [a]
@@ -104,7 +96,7 @@ foldl op acc (x:xs) =
   in foldl op acc' xs
 
 foldr :: (a -> b -> b) -> b -> [a] -> b
-foldr _  acc [] = acc
+foldr _  acc []     = acc
 foldr op acc (x:xs) = op x (foldr op acc xs)
 
 any :: (a -> Bool) -> [a] -> Bool
@@ -114,8 +106,8 @@ all :: (a -> Bool) -> [a] -> Bool
 all p = foldl (\b a -> b && p a) True
 
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
-zipWith _ [] _ = []
-zipWith _ _ [] = []
+zipWith _ [] _           = []
+zipWith _ _ []           = []
 zipWith op (x:xs) (y:ys) = op x y : zipWith op xs ys
 
 --------------------------------------------------------------------------------

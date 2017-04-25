@@ -38,6 +38,7 @@ test-suite koan-test
                       , Check.List
                       , Check.Maybe
                       , Check.Ord
+                      , Check.Simple
                       , Check.Start
   build-depends:        base
                       , hedgehog

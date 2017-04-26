@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
 
-module Check.Start where
+module Check.Simple where
 
 import           Data.Maybe
 import           Hedgehog

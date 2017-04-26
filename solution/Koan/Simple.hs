@@ -2,6 +2,9 @@ module Koan.Simple where
 
 import           Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
 
+enrolled :: Bool
+enrolled = False
+
 id :: a -> a
 id a = a
 

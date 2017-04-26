@@ -6,6 +6,7 @@ import qualified Check.Functor
 import qualified Check.List
 import qualified Check.Maybe
 import qualified Check.Ord
+import qualified Check.Simple
 import qualified Check.Start
 import           Control.Monad
 import           Data.Maybe
@@ -17,6 +18,7 @@ import qualified Koan.Functor
 import qualified Koan.List
 import qualified Koan.Maybe
 import qualified Koan.Ord
+import qualified Koan.Simple
 import qualified Koan.Start
 
 {- | Returns a count of the number of times the given element occured in the
@@ -31,6 +33,7 @@ tests =
   , (Koan.List.enrolled         , Check.List.tests        )
   , (Koan.Maybe.enrolled        , Check.Maybe.tests       )
   , (Koan.Ord.enrolled          , Check.Ord.tests         )
+  , (Koan.Simple.enrolled       , Check.Simple.tests      )
   , (Koan.Start.enrolled        , Check.Start.tests       )
   ]
 

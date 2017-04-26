@@ -15,6 +15,9 @@ module Koan.Simple where
 -- of it as an exercise.
 import           Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
 
+enrolled :: Bool
+enrolled = False
+
 -- There is only a single possible definition of the first two functions.
 -- Try to work out what they need to do based on their type signature alone.
 id :: a -> a

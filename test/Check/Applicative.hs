@@ -8,6 +8,10 @@ import           Hedgehog
 import qualified Hedgehog.Gen     as Gen
 import qualified Hedgehog.Range   as Range
 
+nativeMaybe :: K.Maybe a -> Maybe a
+nativeMaybe (K.Just a) = Just a
+nativeMaybe K.Nothing  = Nothing
+
 genMaybe :: Monad m => Gen m a -> Gen m (K.Maybe a)
 genMaybe g = do
     inJust <- Gen.bool
@@ -19,10 +23,6 @@ prop_just :: Property
 prop_just = property $ do
   a <- forAll Gen.alpha
   K.just a === K.Just a
-
-nativeMaybe :: K.Maybe a -> Maybe a
-nativeMaybe (K.Just a) = Just a
-nativeMaybe K.Nothing  = Nothing
 
 prop_fmapInMaybe :: Property
 prop_fmapInMaybe = property $ do

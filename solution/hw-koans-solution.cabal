@@ -22,6 +22,7 @@ library
                       , Koan.List
                       , Koan.Maybe
                       , Koan.Ord
+                      , Koan.Simple
                       , Koan.Start
   build-depends:        base >= 4.7 && < 5
                       , hedgehog

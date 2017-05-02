@@ -160,12 +160,12 @@ prop_min = property $ do
 
 prop_maximum :: Property
 prop_maximum = property $ do
-  as <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
+  as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
   K.maximum as === P.maximum as
 
 prop_minimum :: Property
 prop_minimum = property $ do
-  as <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
+  as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
   K.minimum as === P.minimum as
 
 prop_fibonacci :: Property

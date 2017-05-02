@@ -27,11 +27,10 @@ infixr 0 $
 --------------------------------------------------------------------------------
 
 length :: [a] -> Int
-length []     = 0
-length (x:xs) = 1 + length xs
+length = foldr (\_ b -> b + 1) 0
 
 (!!) :: [a] -> Int -> Maybe a
-[] !! i = Nothing
+[] !! _ = Nothing
 (x:xs) !! i
   | i < 0     = Nothing
   | i == 0    = Just x
@@ -42,11 +41,7 @@ length (x:xs) = 1 + length xs
 (x:xs) ++ ys = x:(xs ++ ys)
 
 reverse :: [a] -> [a]
-reverse [] = []
-reserse xs = helper xs []
-  where
-    helper []     stack = stack
-    helper (x:xs) stack = helper xs (x:stack)
+reverse = foldl (flip (:)) []
 
 --------------------------------------------------------------------------------
 -- Infinite lists
@@ -64,9 +59,9 @@ take n (x:xs)
   | otherwise = x : take (n - 1) xs
 
 drop :: Int -> [a] -> [a]
-drop n xs
-  | n <= 0 = xs
-  | otherwise = drop (n - 1) xs
+drop n xs     | n <= 0 = xs
+drop n (x:xs) = drop (n - 1) xs
+drop _ []     = []
 
 takeWhile :: (a -> Bool) -> [a] -> [a]
 takeWhile p (x:xs) | p x = x : takeWhile p xs

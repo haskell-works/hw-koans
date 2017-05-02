@@ -15,3 +15,9 @@ stack repl hw-koans:test:koan
 * `Koan.List`
 * `Koan.Eq`
 * `Koan.Ord`
+* `Koana.Simple`
+
+## Beginner
+* `Koan.Functor`
+* `Koan.Maybe`
+* `Koan.Applicative`

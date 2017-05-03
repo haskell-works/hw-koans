@@ -24,6 +24,7 @@ library
                       , Koan.Ord
                       , Koan.Simple
                       , Koan.Start
+                      , Koan.State
   build-depends:        base >= 4.7 && < 5
                       , hedgehog
                       , mtl
@@ -41,6 +42,7 @@ test-suite koan-test
                       , Check.Ord
                       , Check.Simple
                       , Check.Start
+                      , Check.State
   build-depends:        base
                       , hedgehog
                       , hw-koans-solution

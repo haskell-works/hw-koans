@@ -8,6 +8,7 @@ import qualified Check.Maybe
 import qualified Check.Ord
 import qualified Check.Simple
 import qualified Check.Start
+import qualified Check.State
 import           Control.Monad
 import           Data.Maybe
 import           Data.Monoid
@@ -20,6 +21,7 @@ import qualified Koan.Maybe
 import qualified Koan.Ord
 import qualified Koan.Simple
 import qualified Koan.Start
+import qualified Koan.State
 
 {- | Returns a count of the number of times the given element occured in the
 given list. -}
@@ -35,6 +37,7 @@ tests =
   , (Koan.Ord.enrolled          , Check.Ord.tests         )
   , (Koan.Simple.enrolled       , Check.Simple.tests      )
   , (Koan.Start.enrolled        , Check.Start.tests       )
+  , (Koan.State.enrolled        , Check.State.tests       )
   ]
 
 main :: IO ()

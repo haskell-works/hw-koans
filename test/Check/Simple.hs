@@ -46,9 +46,11 @@ prop_length = property $ do
 
 prop_index_op :: Property
 prop_index_op = property $ do
-  as <- forAll $ Gen.list (Range.linear 1 100) (Gen.int (Range.constantBounded))
-  i  <- forAll $ Gen.int (Range.linear 0 (P.length as - 1))
-  as K.!! i === listToMaybe (drop i as)
+  as <- forAll $ Gen.list (Range.linear 0 100) (Gen.int (Range.constantBounded))
+  i  <- forAll $ Gen.int (Range.linear (-200) 200)
+  if i >= 0 && i < P.length as
+    then as K.!! i === listToMaybe (drop i as)
+    else as K.!! i === Nothing
 
 prop_concat_op :: Property
 prop_concat_op = property $ do

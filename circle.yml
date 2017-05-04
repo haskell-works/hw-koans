@@ -1,0 +1,46 @@
+version: 2.0
+jobs:
+  build:
+    working_directory: ~/hw-koans
+    docker:
+      - image: fpco/stack-build:latest
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys: 
+            - dot-stack-{{ checksum "stack.yaml" }}-{{ checksum "hw-koans.cabal" }}
+            - dot-stack-{{ checksum "stack.yaml" }}
+
+      - restore_cache:
+          key: dot-stack-work-{{ checksum "stack.yaml" }}
+
+      - run:
+          name: Stack setup
+          command: stack setup
+
+      - run:
+          name: Compiling
+          command: stack build --test --no-run-tests 
+
+      - run:
+          name: Running tests
+          command: |
+            stack test
+            ( cd solution
+              stack test
+            )
+
+      - save_cache:
+          key: dot-stack-{{ checksum "stack.yaml" }}-{{ checksum "hw-koans.cabal" }}
+          paths:
+            - ~/.stack
+      - save_cache:
+          key: dot-stack-{{ checksum "stack.yaml" }}
+          paths:
+            - ~/.stack
+
+      - save_cache:
+          key: dot-stack-work-{{ checksum "stack.yaml" }}
+          paths: ~/hw-koans/.stack-work

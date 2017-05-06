@@ -12,7 +12,8 @@ jobs:
       - restore_cache:
           keys: 
             - dot-stack-{{ checksum "stack.yaml" }}-{{ checksum "hw-koans.cabal" }}
-            - dot-stack-{{ checksum "stack.yaml" }}
+            - dot-stack-{{ checksum "stack.yaml" }}-build
+            - dot-stack-{{ checksum "stack.yaml" }}-setup
 
       - restore_cache:
           key: dot-stack-work-{{ checksum "stack.yaml" }}
@@ -20,6 +21,11 @@ jobs:
       - run:
           name: Stack setup
           command: stack setup
+
+      - save_cache:
+          key: dot-stack-{{ checksum "stack.yaml" }}-setup
+          paths:
+            - ~/.stack
 
       - run:
           name: Compiling
@@ -30,7 +36,7 @@ jobs:
           paths:
             - ~/.stack
       - save_cache:
-          key: dot-stack-{{ checksum "stack.yaml" }}
+          key: dot-stack-{{ checksum "stack.yaml" }}-build
           paths:
             - ~/.stack
 

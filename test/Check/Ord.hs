@@ -58,4 +58,4 @@ prop_sort = property $ do
   K.sort as === P.sort as
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

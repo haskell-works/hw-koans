@@ -60,4 +60,4 @@ prop_mkConnection = property $ do
     )
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

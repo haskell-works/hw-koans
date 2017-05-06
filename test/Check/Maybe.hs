@@ -64,4 +64,4 @@ prop_bindMaybe = property $ do
   (K.bindMaybe mf2 ma) === (ma P.>>= mf2)
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

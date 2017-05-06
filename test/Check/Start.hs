@@ -9,4 +9,4 @@ prop_meaningOfLife :: Property
 prop_meaningOfLife = property $ meaningOfLife === 42
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

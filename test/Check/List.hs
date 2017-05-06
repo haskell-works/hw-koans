@@ -50,4 +50,4 @@ prop_tails = property $ do
   K.tails xs === P.tails xs
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

@@ -52,4 +52,4 @@ prop_bind = property $ do
   K.runState (K.put value >> K.get >>= \a -> K.put (a + 1)) initial === ((), value + 1)
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

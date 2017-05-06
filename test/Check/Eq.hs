@@ -54,4 +54,4 @@ prop_isPrefixOf = property $ do
   (xs `K.isPrefixOf` ys) === (xs `P.isPrefixOf` ys)
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

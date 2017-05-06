@@ -8,6 +8,7 @@ jobs:
     steps:
       - checkout
 
+      ##### Building library
       - restore_cache:
           keys: 
             - dot-stack-{{ checksum "stack.yaml" }}-{{ checksum "hw-koans.cabal" }}
@@ -24,14 +25,6 @@ jobs:
           name: Compiling
           command: stack build --test --no-run-tests 
 
-      - run:
-          name: Running tests
-          command: |
-            stack test
-            ( cd solution
-              stack test
-            )
-
       - save_cache:
           key: dot-stack-{{ checksum "stack.yaml" }}-{{ checksum "hw-koans.cabal" }}
           paths:
@@ -44,3 +37,12 @@ jobs:
       - save_cache:
           key: dot-stack-work-{{ checksum "stack.yaml" }}
           paths: ~/hw-koans/.stack-work
+
+      ##### Running tests
+      - run:
+          name: Running tests
+          command: |
+            stack test
+            ( cd solution
+              stack test
+            )

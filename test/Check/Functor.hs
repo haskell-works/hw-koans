@@ -42,4 +42,4 @@ prop_fmap_void = property $ do
   K.void mb === P.void mb
 
 tests :: IO Bool
-tests = ($$(checkConcurrent))
+tests = checkParallel $$(discover)

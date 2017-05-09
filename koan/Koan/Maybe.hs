@@ -49,3 +49,19 @@ applyMaybe = error "TODO: Implement applyMaybe"
 -- the input function also returning a Maybe.
 bindMaybe :: (a -> Maybe b) -> Maybe a -> Maybe b
 bindMaybe = error "TODO: Implement bindMaybe"
+
+instance Functor Maybe where
+  fmap = error "TODO: Implement fmap for (Maybe a)"
+
+instance Applicative Maybe where
+  pure = error "TODO: Implement Applicative pure for Maybe"
+  (<*>) = error "TODO: Implement Applicative (<*>) for Maybe"
+
+instance Monad Maybe where
+  (>>=) = error "TODO: Implement Monad (>>=) for Maybe"
+
+computeSumInDo :: Maybe Int -> Maybe Int -> Maybe Int
+computeSumInDo getIntA getIntB = do
+  _ <- getIntA
+  _ <- getIntB
+  return (error "TODO: Implement rest of computeSum")

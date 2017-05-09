@@ -72,5 +72,33 @@ prop_bindMaybe = property $ do
   unk (K.bindMaybe (enk <$> mf1) (enk ma)) === (ma P.>>= mf1)
   unk (K.bindMaybe (enk <$> mf2) (enk ma)) === (ma P.>>= mf2)
 
+prop_functor_fmapMaybe :: Property
+prop_functor_fmapMaybe = property $ do
+  mb  <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+  unk ((+1) <$> enk mb) === ((+1) <$> mb)
+
+prop_applicative_pureMaybe :: Property
+prop_applicative_pureMaybe = property $ do
+  a  <- forAll $ Gen.int Range.constantBounded
+  unk (pure a) === pure a
+
+prop_applicative_applyMaybe :: Property
+prop_applicative_applyMaybe = property $ do
+  mf  <- forAll $ Gen.maybe (pure "(+1)")
+  ma  <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+  unk ((const (+1) <$> enk mf) <*> enk ma) === ((const (+1) <$> mf) <*> ma)
+
+prop_monad_bind :: Property
+prop_monad_bind = property $ do
+  mf  <- forAll $ Gen.maybe (pure "(+1)")
+  ma  <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+  unk ((const (+1) <$> enk mf) <*> enk ma) === ((const (+1) <$> mf) <*> ma)
+
+prop_computeSumInDo :: Property
+prop_computeSumInDo = property $ do
+  ma  <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+  mb  <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+  unk (computeSumInDo (enk ma) (enk mb)) === ((+) <$> ma <*> mb)
+
 tests :: IO Bool
 tests = checkSequential $ reversed $$(discover)

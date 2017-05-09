@@ -36,10 +36,25 @@ foldMaybe _  acc Nothing  = acc
 foldMaybe op acc (Just x) = op acc x
 
 applyMaybe :: Maybe (a -> b) -> Maybe a -> Maybe b
-applyMaybe Nothing  _        = Nothing
-applyMaybe _        Nothing  = Nothing
 applyMaybe (Just f) (Just x) = Just (f x)
+applyMaybe _        _        = Nothing
 
 bindMaybe :: (a -> Maybe b) -> Maybe a -> Maybe b
 bindMaybe _ Nothing  = Nothing
 bindMaybe f (Just x) = f x
+
+instance Functor Maybe where
+  fmap = mapMaybe
+
+instance Applicative Maybe where
+  pure = Just
+  (<*>) = applyMaybe
+
+instance Monad Maybe where
+  (>>=) = flip bindMaybe
+
+computeSumInDo :: Maybe Int -> Maybe Int -> Maybe Int
+computeSumInDo getIntA getIntB = do
+  a <- getIntA
+  b <- getIntB
+  return (a + b)

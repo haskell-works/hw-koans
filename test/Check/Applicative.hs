@@ -5,6 +5,7 @@ module Check.Applicative where
 import qualified Koan.Applicative as K
 
 import           Hedgehog
+import           Hedgehog.Extra
 import qualified Hedgehog.Gen     as Gen
 import qualified Hedgehog.Range   as Range
 
@@ -60,4 +61,4 @@ prop_mkConnection = property $ do
     )
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

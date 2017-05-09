@@ -6,6 +6,7 @@ module Check.Ord where
 
 import qualified Data.List      as P
 import           Hedgehog
+import           Hedgehog.Extra
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
 import           Koan.Ord       as K
@@ -58,4 +59,4 @@ prop_sort = property $ do
   K.sort as === P.sort as
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

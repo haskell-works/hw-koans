@@ -12,6 +12,7 @@ import qualified Prelude             as P
 import           Control.Applicative
 import           Data.Maybe
 import           Hedgehog
+import           Hedgehog.Extra
 import           Koan.Maybe          as K
 import           Prelude             hiding (elem, filter)
 
@@ -64,4 +65,4 @@ prop_bindMaybe = property $ do
   (K.bindMaybe mf2 ma) === (ma P.>>= mf2)
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

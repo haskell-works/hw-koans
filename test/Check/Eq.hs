@@ -6,6 +6,7 @@ module Check.Eq where
 
 import qualified Data.List      as P
 import           Hedgehog
+import           Hedgehog.Extra
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
 import           Koan.Eq        as K
@@ -54,4 +55,4 @@ prop_isPrefixOf = property $ do
   (xs `K.isPrefixOf` ys) === (xs `P.isPrefixOf` ys)
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

@@ -5,6 +5,7 @@ module Check.Functor where
 
 import qualified Data.Functor   as P
 import           Hedgehog
+import           Hedgehog.Extra
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
 import           Koan.Functor   as K
@@ -42,4 +43,4 @@ prop_fmap_void = property $ do
   K.void mb === P.void mb
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

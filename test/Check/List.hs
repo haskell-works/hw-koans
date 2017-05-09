@@ -5,6 +5,7 @@
 module Check.List where
 
 import qualified Data.List      as P
+import           Hedgehog.Extra
 import qualified Hedgehog.Gen   as Gen
 import qualified Hedgehog.Range as Range
 import qualified Prelude        as P
@@ -50,4 +51,4 @@ prop_tails = property $ do
   K.tails xs === P.tails xs
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

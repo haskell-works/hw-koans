@@ -7,6 +7,7 @@ import qualified Control.Monad.State as P
 import qualified Koan.State          as K
 
 import           Hedgehog
+import           Hedgehog.Extra
 import qualified Hedgehog.Gen        as Gen
 import qualified Hedgehog.Range      as Range
 
@@ -52,4 +53,4 @@ prop_bind = property $ do
   K.runState (K.put value >> K.get >>= \a -> K.put (a + 1)) initial === ((), value + 1)
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

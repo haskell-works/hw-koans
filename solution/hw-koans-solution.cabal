@@ -43,6 +43,7 @@ test-suite koan-test
                       , Check.Simple
                       , Check.Start
                       , Check.State
+                      , Hedgehog.Extra
   build-depends:        base
                       , hedgehog
                       , hw-koans-solution

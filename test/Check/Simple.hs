@@ -4,6 +4,7 @@ module Check.Simple where
 
 import           Data.Maybe
 import           Hedgehog
+import           Hedgehog.Extra
 import           Hedgehog.Gen   as Gen
 import           Hedgehog.Range as Range
 import qualified Koan.Simple    as K
@@ -179,4 +180,4 @@ prop_fibonacci = property $ do
   (K.fibonacci !! i) + (K.fibonacci !! (i + 1)) === (K.fibonacci !! (i + 2))
 
 tests :: IO Bool
-tests = checkParallel $$(discover)
+tests = checkSequential $ reversed $$(discover)

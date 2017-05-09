@@ -1,6 +1,6 @@
 module Koan.Maybe where
 
-import           Prelude hiding ()
+import           Prelude hiding (Maybe (..))
 
 enrolled :: Bool
 enrolled = False
@@ -10,11 +10,7 @@ enrolled = False
 -- of a piece of data.
 -- In other words, it should represent whether a piece of data is exists or not.
 
-{-
-
-data Maybe a = Undefined
-
--}
+data Maybe a = Nothing | Just a deriving (Eq, Show)
 
 -- This should return the contents of the 'Maybe' if it exists, otherwise
 -- it should return the provided value.

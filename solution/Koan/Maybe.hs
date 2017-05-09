@@ -1,15 +1,11 @@
 module Koan.Maybe where
 
-import           Prelude hiding ()
+import           Prelude hiding (Maybe (..))
 
 enrolled :: Bool
 enrolled = False
 
-{-
-
-data Maybe a = Nothing | Just a
-
--}
+data Maybe a = Nothing | Just a deriving (Eq, Show)
 
 orElse :: Maybe a -> a -> a
 orElse Nothing x  = x

@@ -5,6 +5,7 @@ import qualified Check.Eq
 import qualified Check.Functor
 import qualified Check.List
 import qualified Check.Maybe
+import qualified Check.Monad
 import qualified Check.Ord
 import qualified Check.Simple
 import qualified Check.Start
@@ -18,6 +19,7 @@ import qualified Koan.Eq
 import qualified Koan.Functor
 import qualified Koan.List
 import qualified Koan.Maybe
+import qualified Koan.Monad
 import qualified Koan.Ord
 import qualified Koan.Simple
 import qualified Koan.Start
@@ -34,6 +36,7 @@ tests =
   , (Koan.Functor.enrolled      , Check.Functor.tests     )
   , (Koan.List.enrolled         , Check.List.tests        )
   , (Koan.Maybe.enrolled        , Check.Maybe.tests       )
+  , (Koan.Monad.enrolled        , Check.Monad.tests       )
   , (Koan.Ord.enrolled          , Check.Ord.tests         )
   , (Koan.Simple.enrolled       , Check.Simple.tests      )
   , (Koan.Start.enrolled        , Check.Start.tests       )

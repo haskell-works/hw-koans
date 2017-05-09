@@ -21,6 +21,7 @@ library
                       , Koan.Functor
                       , Koan.List
                       , Koan.Maybe
+                      , Koan.Monad
                       , Koan.Ord
                       , Koan.Simple
                       , Koan.Start
@@ -39,6 +40,7 @@ test-suite koan-test
                       , Check.Functor
                       , Check.List
                       , Check.Maybe
+                      , Check.Monad
                       , Check.Ord
                       , Check.Start
                       , Check.State

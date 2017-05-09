@@ -21,4 +21,5 @@ stack repl hw-koans:test:koan
 * `Koan.Functor`
 * `Koan.Maybe`
 * `Koan.Applicative`
+* `Koan.Monad`
 * `Koan.State`

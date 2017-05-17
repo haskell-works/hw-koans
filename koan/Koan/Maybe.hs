@@ -32,7 +32,8 @@ mapMaybe = error "TODO: Implement mapMaybe"
 concatMaybes :: [Maybe a] -> [a]
 concatMaybes = error "TODO: Implement concatMaybes"
 
--- Filter for Maybes
+-- Filter for Maybes.  Think of Maybes as a collection of at most one element.
+-- This function should remove all elements that fail the predicate (a -> Bool)
 filterMaybe :: (a -> Bool) -> Maybe a -> Maybe a
 filterMaybe = error "TODO: Implement filterMayber"
 

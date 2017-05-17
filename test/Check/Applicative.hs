@@ -9,6 +9,25 @@ import           Hedgehog.Extra
 import qualified Hedgehog.Gen     as Gen
 import qualified Hedgehog.Range   as Range
 
+instance K.Applicative Maybe where
+  pure = Just
+  Nothing <*> _ = Nothing
+  _ <*> Nothing = Nothing
+  (Just f) <*> (Just x) = Just (f x)
+
+prop_apply_id :: Property
+prop_apply_id = property $ do
+  ma <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+  K.pure id K.<*> ma === ma
+
+-- prop_apply_composition :: Property
+-- prop_apply_composition = property $ do
+--   ma <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+--   mb <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+--   mc <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
+--   K.pure (.) K.<*> ma K.<*> mb K.<*> mc === ma K.<*> (mb K.<*> mc)
+
+{-
 nativeMaybe :: K.Maybe a -> Maybe a
 nativeMaybe (K.Just a) = Just a
 nativeMaybe K.Nothing  = Nothing
@@ -59,6 +78,8 @@ prop_mkConnection = property $ do
     <$> (K.EndPoint <$> nativeMaybe sHost <*> nativeMaybe sPort)
     <*> (K.EndPoint <$> nativeMaybe dHost <*> nativeMaybe dPort)
     )
+
+-}
 
 tests :: IO Bool
 tests = checkSequential $ reversed $$(discover)

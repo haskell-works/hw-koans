@@ -5,6 +5,17 @@ import           Prelude hiding (Maybe (..))
 enrolled :: Bool
 enrolled = True
 
+class Functor f => Applicative f where
+  pure  :: a -> f a
+  (<*>) :: f (a -> b) -> f a -> f b
+
+  (*>) :: f a -> f b -> f b
+  a *> b = (id <$ a) Koan.Applicative.<*> b
+
+  (<*) :: f a -> f b -> f a
+  a <* b = fmap const a Koan.Applicative.<*> b
+
+{-
 data Maybe a = Just a | Nothing deriving (Eq, Show)
 
 just :: a -> Maybe a
@@ -74,3 +85,5 @@ data Connection = Connection
 mkConnection :: Maybe Host -> Maybe Port -> Maybe Host -> Maybe Port -> Maybe Connection
 mkConnection mSrcHost mSrcPort mDstHost mDstPort =
   Connection <$> (EndPoint <$> mSrcHost <*> mSrcPort) <*> (EndPoint <$> mDstHost <*> mDstPort)
+
+-}

@@ -5,7 +5,7 @@ import           Prelude hiding (Monad, fmap, (<$), (<$>))
 enrolled :: Bool
 enrolled = False
 
-class Monad m  where
+class Applicative m => Monad m  where
     (>>=) :: m a -> (a -> m b) -> m b
 
     (>>) :: m a -> m b -> m b

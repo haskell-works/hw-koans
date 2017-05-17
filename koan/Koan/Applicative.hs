@@ -5,22 +5,17 @@ import           Prelude hiding (Maybe (..))
 enrolled :: Bool
 enrolled = False
 
-data Maybe a = Just a | Nothing deriving (Eq, Show)
+class Functor f => Applicative f where
+  pure  :: a -> f a
+  (<*>) :: f (a -> b) -> f a -> f b
 
-just :: a -> Maybe a
-just = error "TODO: Implement just"
+  (*>) :: f a -> f b -> f b
+  (*>) = error "TODO: implement (*>)"
 
-fmapInMaybe :: (a -> b) -> Maybe a -> Maybe b
-fmapInMaybe  = error "TODO: Implement fmapInMaybe"
-
-applyInMaybe :: Maybe (a -> b) -> Maybe a -> Maybe b
-applyInMaybe = error "TODO: Implement applyInMaybe"
+  (<*) :: f a -> f b -> f a
+  (<*) = error "TODO: implement (<*)"
 
 {-
-class Functor f where
-  fmap :: (a -> b) -> f a -> f b
--}
-
 instance Functor Maybe where
   fmap = error "TODO: Implement fmap"
 
@@ -71,3 +66,5 @@ data Connection = Connection
 
 mkConnection :: Maybe Host -> Maybe Port -> Maybe Host -> Maybe Port -> Maybe Connection
 mkConnection srcHost srcPort dstHost dstPort = error "TODO: Implement mkConnection using (<$>) and <*>"
+
+-}

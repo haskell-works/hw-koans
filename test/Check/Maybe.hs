@@ -16,6 +16,15 @@ import           Hedgehog.Extra
 import           Koan.Maybe          as K
 import           Prelude             hiding (elem, filter)
 
+{-# ANN module ("HLint: Reduce duplication" :: String) #-}
+
+genMaybe :: Monad m => Gen m a -> Gen m (K.Maybe a)
+genMaybe g = do
+    inJust <- Gen.bool
+    if inJust
+      then K.Just <$> g
+      else pure K.Nothing
+
 enk :: P.Maybe a -> K.Maybe a
 enk (P.Just a) = K.Just a
 enk P.Nothing  = K.Nothing
@@ -99,6 +108,24 @@ prop_computeSumInDo = property $ do
   ma  <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
   mb  <- forAll $ Gen.maybe (Gen.int Range.constantBounded)
   unk (computeSumInDo (enk ma) (enk mb)) === ((+) <$> ma <*> mb)
+
+prop_mkEndPoint :: Property
+prop_mkEndPoint = property $ do
+  s <- forAll $ genMaybe $ Gen.string (Range.linear 0 100) Gen.alpha
+  p <- forAll $ genMaybe $ Gen.int (Range.linear 0 100)
+  unk (K.mkEndPoint s p) === (K.EndPoint <$> unk s <*> unk p)
+
+prop_mkConnection :: Property
+prop_mkConnection = property $ do
+  sHost <- forAll $ genMaybe $ Gen.string (Range.linear 0 100) Gen.alpha
+  sPort <- forAll $ genMaybe $ Gen.int (Range.linear 0 100)
+  dHost <- forAll $ genMaybe $ Gen.string (Range.linear 0 100) Gen.alpha
+  dPort <- forAll $ genMaybe $ Gen.int (Range.linear 0 100)
+  unk (K.mkConnection sHost sPort dHost dPort) ===
+    (   K.Connection
+    <$> (K.EndPoint <$> unk sHost <*> unk sPort)
+    <*> (K.EndPoint <$> unk dHost <*> unk dPort)
+    )
 
 tests :: IO Bool
 tests = checkSequential $ reversed $$(discover)

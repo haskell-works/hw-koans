@@ -66,3 +66,25 @@ computeSumInDo getIntA getIntB = do
   _ <- getIntA
   _ <- getIntB
   return (error "TODO: Implement rest of computeSum")
+
+computeSumWithApplicative :: Maybe Int -> Maybe Int -> Maybe Int
+computeSumWithApplicative = error "TODO: Implement computeSumWithApplicative with (<$>) and (<*>) instead of do notation"
+
+type Host = String
+type Port = Int
+
+data EndPoint = EndPoint
+  { host :: Host
+  , port :: Port
+  } deriving (Eq, Show)
+
+mkEndPoint :: Maybe Host -> Maybe Int -> Maybe EndPoint
+mkEndPoint = error "TODO: Implement mkEndPoint using (<$>) and (<*>)"
+
+data Connection = Connection
+  { srcEndPoint :: EndPoint
+  , dstEndPoint :: EndPoint
+  } deriving (Eq, Show)
+
+mkConnection :: Maybe Host -> Maybe Port -> Maybe Host -> Maybe Port -> Maybe Connection
+mkConnection srcHost srcPort dstHost dstPort = error "TODO: Implement mkConnection using (<$>) and <*>"

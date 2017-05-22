@@ -26,6 +26,7 @@ library
                       , Koan.Maybe
                       , Koan.Monad
                       , Koan.Ord
+                      , Koan.Parser
                       , Koan.Simple
                       , Koan.Start
                       , Koan.State
@@ -52,6 +53,8 @@ test-suite koan-test
                       , Check.Simple
                       , Hedgehog.Extra
   build-depends:        base
+                      , attoparsec
+                      , bytestring
                       , hedgehog
                       , hw-koans
                       , mtl

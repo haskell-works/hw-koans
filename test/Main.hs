@@ -9,6 +9,7 @@ import qualified Check.List
 import qualified Check.Maybe
 import qualified Check.Monad
 import qualified Check.Ord
+import qualified Check.Parser
 import qualified Check.Simple
 import qualified Check.Start
 import qualified Check.State
@@ -25,6 +26,7 @@ import qualified Koan.List
 import qualified Koan.Maybe
 import qualified Koan.Monad
 import qualified Koan.Ord
+import qualified Koan.Parser
 import qualified Koan.Simple
 import qualified Koan.Start
 import qualified Koan.State
@@ -44,6 +46,7 @@ tests =
   , (Koan.Maybe.enrolled        , Check.Maybe.tests       )
   , (Koan.Monad.enrolled        , Check.Monad.tests       )
   , (Koan.Ord.enrolled          , Check.Ord.tests         )
+  , (Koan.Parser.enrolled       , Check.Parser.tests      )
   , (Koan.Simple.enrolled       , Check.Simple.tests      )
   , (Koan.Start.enrolled        , Check.Start.tests       )
   , (Koan.State.enrolled        , Check.State.tests       )

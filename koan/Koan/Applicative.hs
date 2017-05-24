@@ -2,6 +2,11 @@ module Koan.Applicative where
 
 import           Prelude hiding (Maybe (..))
 
+{-
+## Pre-requisites
+* Functor
+-}
+
 enrolled :: Bool
 enrolled = False
 

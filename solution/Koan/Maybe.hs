@@ -58,3 +58,28 @@ computeSumInDo getIntA getIntB = do
   a <- getIntA
   b <- getIntB
   return (a + b)
+
+computeSumWithApplicative :: Maybe Int -> Maybe Int -> Maybe Int
+computeSumWithApplicative getIntA getIntB = (+) <$> getIntA <*> getIntB
+
+type Host = String
+type Port = Int
+
+data EndPoint = EndPoint
+  { host :: Host
+  , port :: Port
+  } deriving (Eq, Show)
+
+mkEndPoint :: Maybe Host -> Maybe Port -> Maybe EndPoint
+mkEndPoint mHost mPort = EndPoint <$> mHost <*> mPort
+
+data Protocol = Http | Ftp deriving (Eq, Show)
+
+data Connection = Connection
+  { srcEndPoint :: EndPoint
+  , dstEndPoint :: EndPoint
+  } deriving (Eq, Show)
+
+mkConnection :: Maybe Host -> Maybe Port -> Maybe Host -> Maybe Port -> Maybe Connection
+mkConnection mSrcHost mSrcPort mDstHost mDstPort =
+  Connection <$> (EndPoint <$> mSrcHost <*> mSrcPort) <*> (EndPoint <$> mDstHost <*> mDstPort)

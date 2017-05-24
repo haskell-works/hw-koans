@@ -76,7 +76,7 @@ prop_foldr_list = property $ do
 prop_apply_list :: Property
 prop_apply_list = property $ do
   xs <- forAll $ Gen.list (Range.linear 0 100) $ Gen.int Range.constantBounded
-  let fns = [(+ 2), (* 4), \x -> -x, mod 2]
+  let fns = [(+ 2), (* 4), \x -> -x, (`mod` 2)]
   K.applyList fns xs === (fns P.<*> xs)
 
 prop_bind_list :: Property

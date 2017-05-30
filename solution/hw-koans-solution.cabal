@@ -16,6 +16,7 @@ cabal-version:          >=1.10
 library
   hs-source-dirs:       .
   exposed-modules:      Koan
+                      , Koan.Alternative
                       , Koan.Applicative
                       , Koan.Either
                       , Koan.Eq
@@ -37,7 +38,8 @@ test-suite koan-test
   type:                 exitcode-stdio-1.0
   hs-source-dirs:       ../test
   main-is:              Main.hs
-  other-modules:        Check.Applicative
+  other-modules:        Check.Alternative
+                      , Check.Applicative
                       , Check.Either
                       , Check.Eq
                       , Check.Functor

@@ -1,9 +1,11 @@
 module Koan.Applicative where
 
-import           Prelude hiding (Maybe (..))
+import Prelude hiding (Applicative (..), Maybe (..))
 
 enrolled :: Bool
 enrolled = True
+
+infixl 4 <*>, <*, *>
 
 class Functor f => Applicative f where
   pure  :: a -> f a

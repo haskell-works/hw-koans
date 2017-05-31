@@ -7,23 +7,23 @@ import           Koan.Applicative as K
 import           Koan.Monad       as K
 
 enrolled :: Bool
-enrolled = False
+enrolled = True
 
 (.) :: (b -> c) -> (a -> b) -> a -> c
-(.) = error "TODO: Implement (.)"
+(.) f g x = f (g x)
 
 flip :: (a -> b -> c) -> b -> a -> c
-flip = error "TODO: Implement flip"
+flip f b a = f a b
 
 -- Hint: You're already implemented this.
 mapFunction :: (a -> b) -> (r -> a) -> r -> b
-mapFunction = error "TODO: Implement mapFunction"
+mapFunction = (.)
 
 applyFunction :: (r -> a -> b) -> (r -> a) -> r -> b
-applyFunction = error "TODO: implement applyFunction"
+applyFunction f g x = f x (g x)
 
 bindFunction :: (a -> r -> b) -> (r -> a) -> r -> b
-bindFunction = error "TODO: implement bindFunction"
+bindFunction f k r = f (k r) r
 
 instance K.Functor ((->) r) where
   fmap = error "TODO: Implement fmap for (->)"

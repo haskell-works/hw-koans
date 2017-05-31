@@ -17,7 +17,9 @@ library
   hs-source-dirs:       .
   exposed-modules:      Koan
                       , Koan.Applicative
+                      , Koan.Either
                       , Koan.Eq
+                      , Koan.Function
                       , Koan.Functor
                       , Koan.List
                       , Koan.Maybe
@@ -36,6 +38,7 @@ test-suite koan-test
   hs-source-dirs:       ../test
   main-is:              Main.hs
   other-modules:        Check.Applicative
+                      , Check.Either
                       , Check.Eq
                       , Check.Functor
                       , Check.List

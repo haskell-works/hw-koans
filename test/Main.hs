@@ -1,6 +1,7 @@
 module Main where
 
 import qualified Check.Applicative
+import qualified Check.Either
 import qualified Check.Eq
 import qualified Check.Functor
 import qualified Check.List
@@ -15,6 +16,7 @@ import           Data.Maybe
 import           Data.Monoid
 import qualified Koan
 import qualified Koan.Applicative
+import qualified Koan.Either
 import qualified Koan.Eq
 import qualified Koan.Functor
 import qualified Koan.List
@@ -32,6 +34,7 @@ countElem i = length . filter (i==)
 
 tests =
   [ (Koan.Applicative.enrolled  , Check.Applicative.tests )
+  , (Koan.Either.enrolled       , Check.Either.tests      )
   , (Koan.Eq.enrolled           , Check.Eq.tests          )
   , (Koan.Functor.enrolled      , Check.Functor.tests     )
   , (Koan.List.enrolled         , Check.List.tests        )

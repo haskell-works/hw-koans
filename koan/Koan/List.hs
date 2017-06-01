@@ -54,6 +54,8 @@ mapList = error "TODO: implement mapList"
 filterList :: (a -> Bool) -> [a] -> [a]
 filterList = error "TODO: implement filterList"
 
+-- Example:
+--   foldlList (+) 0 [1, 2, 3] = 6
 foldlList :: (b -> a -> b) -> b -> [a] -> b
 foldlList = error "TODO: implement foldlList"
 

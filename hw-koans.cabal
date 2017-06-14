@@ -48,6 +48,7 @@ test-suite koan-test
                       , Check.Maybe
                       , Check.Monad
                       , Check.Ord
+                      , Check.Parser
                       , Check.Start
                       , Check.State
                       , Check.Simple

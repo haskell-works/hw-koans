@@ -1,5 +1,6 @@
 module Main where
 
+import qualified Check.Alternative
 import qualified Check.Applicative
 import qualified Check.Either
 import qualified Check.Eq
@@ -8,6 +9,7 @@ import qualified Check.List
 import qualified Check.Maybe
 import qualified Check.Monad
 import qualified Check.Ord
+import qualified Check.Parser
 import qualified Check.Simple
 import qualified Check.Start
 import qualified Check.State
@@ -15,6 +17,7 @@ import           Control.Monad
 import           Data.Maybe
 import           Data.Monoid
 import qualified Koan
+import qualified Koan.Alternative
 import qualified Koan.Applicative
 import qualified Koan.Either
 import qualified Koan.Eq
@@ -23,6 +26,7 @@ import qualified Koan.List
 import qualified Koan.Maybe
 import qualified Koan.Monad
 import qualified Koan.Ord
+import qualified Koan.Parser
 import qualified Koan.Simple
 import qualified Koan.Start
 import qualified Koan.State
@@ -33,7 +37,8 @@ countElem :: Eq a => a -> [a] -> Int
 countElem i = length . filter (i==)
 
 tests =
-  [ (Koan.Applicative.enrolled  , Check.Applicative.tests )
+  [ (Koan.Alternative.enrolled  , Check.Alternative.tests )
+  , (Koan.Applicative.enrolled  , Check.Applicative.tests )
   , (Koan.Either.enrolled       , Check.Either.tests      )
   , (Koan.Eq.enrolled           , Check.Eq.tests          )
   , (Koan.Functor.enrolled      , Check.Functor.tests     )
@@ -41,6 +46,7 @@ tests =
   , (Koan.Maybe.enrolled        , Check.Maybe.tests       )
   , (Koan.Monad.enrolled        , Check.Monad.tests       )
   , (Koan.Ord.enrolled          , Check.Ord.tests         )
+  , (Koan.Parser.enrolled       , Check.Parser.tests      )
   , (Koan.Simple.enrolled       , Check.Simple.tests      )
   , (Koan.Start.enrolled        , Check.Start.tests       )
   , (Koan.State.enrolled        , Check.State.tests       )
@@ -48,7 +54,7 @@ tests =
 
 main :: IO ()
 main = do
-  results <- forM tests $ \(enrolled, test) -> do
+  results <- forM tests $ \(enrolled, test) ->
     if enrolled || Koan.allEnrolled
       then Just <$> test else return Nothing
   let suites = catMaybes results
@@ -61,5 +67,5 @@ main = do
   if numFailures == 0
     then putStrLn $ "All enrolled " <> show numSuites <> " test suites succeeded"
     else putStrLn $ show numFailures <> " out of " <> show numSuites <> " test suites failed"
-  when (numNotEnrolled > 0) $ do
+  when (numNotEnrolled > 0) $
     putStrLn $ show numNotEnrolled <> " suites not enrolled"

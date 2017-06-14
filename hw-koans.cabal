@@ -16,6 +16,7 @@ cabal-version:          >=1.10
 library
   hs-source-dirs:       koan
   exposed-modules:      Koan
+                      , Koan.Alternative
                       , Koan.Applicative
                       , Koan.Either
                       , Koan.Eq
@@ -25,6 +26,7 @@ library
                       , Koan.Maybe
                       , Koan.Monad
                       , Koan.Ord
+                      , Koan.Parser
                       , Koan.Simple
                       , Koan.Start
                       , Koan.State
@@ -37,7 +39,8 @@ test-suite koan-test
   type:                 exitcode-stdio-1.0
   hs-source-dirs:       test
   main-is:              Main.hs
-  other-modules:        Check.Applicative
+  other-modules:        Check.Alternative
+                      , Check.Applicative
                       , Check.Either
                       , Check.Eq
                       , Check.Functor
@@ -50,6 +53,8 @@ test-suite koan-test
                       , Check.Simple
                       , Hedgehog.Extra
   build-depends:        base
+                      , attoparsec
+                      , bytestring
                       , hedgehog
                       , hw-koans
                       , mtl

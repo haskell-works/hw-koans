@@ -26,11 +26,11 @@ bindFunction :: (a -> r -> b) -> (r -> a) -> r -> b
 bindFunction f k r = f (k r) r
 
 instance K.Functor ((->) r) where
-  fmap = error "TODO: Implement fmap for (->)"
+  fmap = mapFunction
 
 instance K.Applicative ((->) r) where
-  pure = error "TODO: Implement Applicative pure for (->)"
-  (<*>) = error "TODO: Implement Applicative (<*>) for (->)"
+  pure = const
+  (<*>) = applyFunction
 
 instance K.Monad ((->) r) where
-  (>>=) = error "TODO: Implement Monad (>>=) for (->)"
+  (>>=) ma f = bindFunction f ma

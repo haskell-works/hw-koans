@@ -27,6 +27,7 @@ library
                       , Koan.Monad
                       , Koan.Ord
                       , Koan.Parser
+                      , Koan.Reader
                       , Koan.Simple
                       , Koan.Start
                       , Koan.State

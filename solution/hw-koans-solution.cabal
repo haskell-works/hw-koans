@@ -27,6 +27,7 @@ library
                       , Koan.Monad
                       , Koan.Ord
                       , Koan.Parser
+                      , Koan.Reader
                       , Koan.Simple
                       , Koan.Start
                       , Koan.State
@@ -49,6 +50,7 @@ test-suite koan-test
                       , Check.Monad
                       , Check.Ord
                       , Check.Parser
+                      , Check.Reader
                       , Check.Simple
                       , Check.Start
                       , Check.State

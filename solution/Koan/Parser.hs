@@ -68,8 +68,8 @@ peekChar = Parser $ \s -> case s of
 
 skip :: (Char -> Bool) -> Parser ()
 skip p = Parser $ \s -> case runParser (satisfy p *> pure ()) s of
-  ParseFailure "satisfyWith"  -> ParseFailure "skip"
-  result                      -> result
+  ParseFailure "satisfyWith" -> ParseFailure "skip"
+  result                     -> result
 
 digit :: Parser Char
 digit = satisfy (\c -> '0' <= c && c <= '9')

@@ -4,6 +4,7 @@ import qualified Check.Alternative
 import qualified Check.Applicative
 import qualified Check.Either
 import qualified Check.Eq
+import qualified Check.Function
 import qualified Check.Functor
 import qualified Check.List
 import qualified Check.Maybe
@@ -21,6 +22,7 @@ import qualified Koan.Alternative
 import qualified Koan.Applicative
 import qualified Koan.Either
 import qualified Koan.Eq
+import qualified Koan.Function
 import qualified Koan.Functor
 import qualified Koan.List
 import qualified Koan.Maybe
@@ -41,6 +43,7 @@ tests =
   , (Koan.Applicative.enrolled  , Check.Applicative.tests )
   , (Koan.Either.enrolled       , Check.Either.tests      )
   , (Koan.Eq.enrolled           , Check.Eq.tests          )
+  , (Koan.Function.enrolled     , Check.Function.tests    )
   , (Koan.Functor.enrolled      , Check.Functor.tests     )
   , (Koan.List.enrolled         , Check.List.tests        )
   , (Koan.Maybe.enrolled        , Check.Maybe.tests       )

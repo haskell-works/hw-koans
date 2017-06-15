@@ -48,7 +48,7 @@ instance Alternative Parser where
 satisfy :: (Char -> Bool) -> Parser Char
 satisfy p = Parser go
   where go (a:as) = if p a
-          then ParseSuccess "" a
+          then ParseSuccess as a
           else ParseFailure "satisfyWith"
         go [] = ParseFailure "Incomplete"
 
@@ -67,12 +67,9 @@ peekChar = Parser $ \s -> case s of
   _      -> ParseFailure "Incomplete"
 
 skip :: (Char -> Bool) -> Parser ()
-skip p = (satisfy p *> pure ()) <|> fail "skip"
-
-peekChar' :: Parser Char
-peekChar' = Parser $ \s -> case s of
-  (a:as) -> ParseSuccess s a
-  _      -> ParseFailure "unexpected end of stream"
+skip p = Parser $ \s -> case runParser (satisfy p *> pure ()) s of
+  ParseFailure "satisfyWith"  -> ParseFailure "skip"
+  result                      -> result
 
 digit :: Parser Char
 digit = satisfy (\c -> '0' <= c && c <= '9')
@@ -84,9 +81,11 @@ space :: Parser Char
 space = satisfy isSpace
 
 string :: String -> Parser String
-string text = Parser $ \s -> if text `isPrefixOf` s
-  then ParseSuccess (drop (length text) s) text
-  else ParseFailure ("expected string " <> show text)
+string s = Parser $ \t -> if s `isPrefixOf` t
+  then ParseSuccess (drop (length s) t) s
+  else if take (length t) s `isPrefixOf` t
+    then ParseFailure "Incomplete"
+    else ParseFailure "string"
 
 doubleQuoted :: Parser String
 doubleQuoted = char '"' *> many escapedChar <* char '"'

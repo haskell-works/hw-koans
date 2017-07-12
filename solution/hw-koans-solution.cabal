@@ -29,6 +29,7 @@ library
                       , Koan.Ord
                       , Koan.Parser
                       , Koan.Parser.Csv
+                      , Koan.Parser.Json
                       , Koan.Reader
                       , Koan.Simple
                       , Koan.Start
@@ -59,6 +60,7 @@ test-suite koan-test
                       , Check.Parser
                       , Check.Parser.Csv
                       , Check.Parser.Csv.Ref
+                      , Check.Parser.Json
                       , Check.Reader
                       , Check.Simple
                       , Check.Start

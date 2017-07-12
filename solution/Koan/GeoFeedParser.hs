@@ -8,6 +8,9 @@ import qualified Data.ByteString.Char8            as BS
 import           Data.Char                        (digitToInt)
 import           Data.Semigroup                   ((<>))
 
+enrolled :: Bool
+enrolled = True
+
 -- Parsing library, reference doc: http://hackage.haskell.org/package/attoparsec-0.13.1.0/docs/Data-Attoparsec-ByteString-Char8.html
 
 data IPv4 = IPv4 Int Int Int Int deriving (Eq, Ord, Show)

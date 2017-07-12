@@ -13,6 +13,7 @@ import qualified Check.Monad
 import qualified Check.Ord
 import qualified Check.Parser
 import qualified Check.Parser.Csv
+import qualified Check.Parser.Json
 import qualified Check.Reader
 import qualified Check.Simple
 import qualified Check.Start
@@ -34,6 +35,7 @@ import qualified Koan.Monad
 import qualified Koan.Ord
 import qualified Koan.Parser
 import qualified Koan.Parser.Csv
+import qualified Koan.Parser.Json
 import qualified Koan.Reader
 import qualified Koan.Simple
 import qualified Koan.Start
@@ -57,6 +59,7 @@ tests =
   , (Koan.Ord.enrolled          , Check.Ord.tests         )
   , (Koan.Parser.enrolled       , Check.Parser.tests      )
   , (Koan.Parser.Csv.enrolled   , Check.Parser.Csv.tests  )
+  , (Koan.Parser.Json.enrolled  , Check.Parser.Json.tests )
   , (Koan.Reader.enrolled       , Check.Reader.tests      )
   , (Koan.Simple.enrolled       , Check.Simple.tests      )
   , (Koan.Start.enrolled        , Check.Start.tests       )

@@ -9,7 +9,7 @@ import           Data.Char                        (digitToInt)
 import           Data.Semigroup                   ((<>))
 
 enrolled :: Bool
-enrolled = True
+enrolled = False
 
 -- Parsing library, reference doc: http://hackage.haskell.org/package/attoparsec-0.13.1.0/docs/Data-Attoparsec-ByteString-Char8.html
 

@@ -27,12 +27,14 @@ library
                       , Koan.Monad
                       , Koan.Ord
                       , Koan.Parser
+                      , Koan.Parser.Csv
                       , Koan.Reader
                       , Koan.Simple
                       , Koan.Start
                       , Koan.State
   build-depends:        base >= 4.7 && < 5
                       , hedgehog
+                      , megaparsec
                       , mtl
   default-language:     Haskell2010
 
@@ -51,6 +53,8 @@ test-suite koan-test
                       , Check.Monad
                       , Check.Ord
                       , Check.Parser
+                      , Check.Parser.Csv
+                      , Check.Parser.Csv.Ref
                       , Check.Reader
                       , Check.Start
                       , Check.State
@@ -61,6 +65,7 @@ test-suite koan-test
                       , bytestring
                       , hedgehog
                       , hw-koans
+                      , megaparsec
                       , mtl
   ghc-options:          -threaded -rtsopts -with-rtsopts=-N
   default-language:     Haskell2010

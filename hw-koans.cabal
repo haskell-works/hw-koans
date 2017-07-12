@@ -20,6 +20,7 @@ library
                       , Koan.Applicative
                       , Koan.Either
                       , Koan.Eq
+                      , Koan.GeoFeedParser
                       , Koan.Function
                       , Koan.Functor
                       , Koan.List
@@ -32,8 +33,11 @@ library
                       , Koan.Start
                       , Koan.State
   build-depends:        base >= 4.7 && < 5
+                      , bytestring
                       , hedgehog
                       , mtl
+                      , attoparsec
+                      , text
   default-language:     Haskell2010
 
 test-suite koan-test
@@ -46,6 +50,7 @@ test-suite koan-test
                       , Check.Eq
                       , Check.Function
                       , Check.Functor
+                      , Check.GeoFeedParser
                       , Check.List
                       , Check.Maybe
                       , Check.Monad
@@ -58,6 +63,7 @@ test-suite koan-test
                       , Hedgehog.Extra
   build-depends:        base
                       , attoparsec
+                      , text
                       , bytestring
                       , hedgehog
                       , hw-koans

@@ -22,6 +22,7 @@ library
                       , Koan.Eq
                       , Koan.Function
                       , Koan.Functor
+                      , Koan.GeoFeedParser
                       , Koan.List
                       , Koan.Maybe
                       , Koan.Monad
@@ -34,6 +35,9 @@ library
   build-depends:        base >= 4.7 && < 5
                       , hedgehog
                       , mtl
+                      , attoparsec
+                      , bytestring
+                      , text
   default-language:     Haskell2010
 
 test-suite koan-test
@@ -59,6 +63,7 @@ test-suite koan-test
   build-depends:        base
                       , attoparsec
                       , bytestring
+                      , text
                       , hedgehog
                       , hw-koans-solution
                       , mtl

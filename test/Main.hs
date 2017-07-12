@@ -6,6 +6,7 @@ import qualified Check.Either
 import qualified Check.Eq
 import qualified Check.Function
 import qualified Check.Functor
+import qualified Check.GeoFeedParser
 import qualified Check.List
 import qualified Check.Maybe
 import qualified Check.Monad
@@ -26,6 +27,7 @@ import qualified Koan.Either
 import qualified Koan.Eq
 import qualified Koan.Function
 import qualified Koan.Functor
+import qualified Koan.GeoFeedParser
 import qualified Koan.List
 import qualified Koan.Maybe
 import qualified Koan.Monad
@@ -59,6 +61,7 @@ tests =
   , (Koan.Simple.enrolled       , Check.Simple.tests      )
   , (Koan.Start.enrolled        , Check.Start.tests       )
   , (Koan.State.enrolled        , Check.State.tests       )
+  , (Koan.GeoFeedParser.enrolled, Check.GeoFeedParser.tests)
   ]
 
 main :: IO ()

@@ -50,7 +50,7 @@ instance FromParsedResult ParsedResult where
 
 infixl 1 =~=
 
-(=~=) :: (Monad m, FromParsedResult f, FromParsedResult g, Eq a, Show a) => f a -> g a -> Test m ()
+(=~=) :: (FromParsedResult f1, FromParsedResult f, Show a, Eq a, MonadTest m) => f a -> f1 a -> m ()
 (=~=) fa ga = toParsedResult fa === toParsedResult ga
 
 prop_fmap_result_op :: Property

@@ -2,17 +2,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell   #-}
 
-module Check.GeoFeedParser
-where
+module Check.GeoFeedParser where
 
-import           Control.Arrow                    (left)
+import Control.Arrow  (left)
+import Data.List      (intercalate)
+import Data.Semigroup ((<>))
+
 import qualified Control.Monad.Fail               as P
 import qualified Data.Attoparsec.ByteString       as P (skip)
 import qualified Data.Attoparsec.ByteString.Char8 as P
 import qualified Data.ByteString                  as BS
 import qualified Data.ByteString.Char8            as BSC
-import           Data.List                        (intercalate)
-import           Data.Semigroup                   ((<>))
 import qualified Koan.GeoFeedParser               as K
 
 import Hedgehog
@@ -92,7 +92,7 @@ runParser = P.parseOnly
 runParserShow :: Show a => P.Parser b -> a -> Either String b
 runParserShow p a = P.parseOnly p (BSC.pack $ show a)
 
-genIp :: Monad m => Gen m K.IPv4
+genIp :: MonadGen m => m K.IPv4
 genIp = do
   [a,b,c,d] <- Gen.list (Range.singleton 4) (Gen.int (Range.linear 0 255))
   return $ K.IPv4 a b c d

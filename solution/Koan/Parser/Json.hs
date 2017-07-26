@@ -55,14 +55,14 @@ litBool
   =   symbol "true"   *> pure True
   <|> symbol "false"  *> pure False
 
+comma :: Parser ()
+comma = symbol "," *> pure ()
+
 brackets :: Parser a -> Parser a
 brackets = between (symbol "[") (symbol "]")
 
 braces :: Parser a -> Parser a
 braces = between (symbol "{") (symbol "}")
-
-comma :: Parser ()
-comma = symbol "," *> pure ()
 
 array :: Parser [Json]
 array = brackets (json `sepBy` comma)

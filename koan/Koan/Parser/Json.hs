@@ -37,37 +37,40 @@ escapees = "\\\"\n\r\t"
 
 -- Hint: Use between function
 brackets :: Parser a -> Parser a
-brackets = error "TODO Implement json"
+brackets = error "TODO Implement brackets"
 
 braces :: Parser a -> Parser a
-braces = error "TODO Implement json"
+braces = error "TODO Implement braces"
 
 plainChar :: Parser Char
-plainChar = error "TODO Implement json"
+plainChar = error "TODO Implement plainChar"
 
 escapedChar :: Parser Char
-escapedChar = error "TODO Implement json"
+escapedChar = error "TODO Implement escapedChar"
 
 litString :: Parser String
-litString = error "TODO Implement json"
+litString = error "TODO Implement litString"
 
 litBool :: Parser Bool
-litBool = error "TODO Implement json"
+litBool = error "TODO Implement litBool"
 
 comma :: Parser ()
-comma = error "TODO Implement json"
+comma = error "TODO Implement comma"
 
 array :: Parser [Json]
-array = error "TODO Implement json"
+array = error "TODO Implement array"
 
 field :: Parser (String, Json)
-field = error "TODO Implement json"
+field = error "TODO Implement field"
 
 object :: Parser [(String, Json)]
-object = error "TODO Implement json"
+object = error "TODO Implement object"
 
 nullKeyword :: Parser ()
-nullKeyword = error "TODO Implement json"
+nullKeyword = error "TODO Implement nullKeyword"
+
+number :: Parser Double
+number = error "TODO Implement number"
 
 json :: Parser Json
 json = error "TODO Implement json"

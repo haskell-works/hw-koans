@@ -73,17 +73,24 @@ prop_comma_matched = property $ do
 
 prop_comma_unmatched :: Property
 prop_comma_unmatched = property $ do
-  nonComma <- forAll $ (/= ',') `Gen.filter` Gen.unicode
+  nonComma <- forAll $ (/= ',') `Gen.filter` Gen.ascii
   parse K.comma "" [nonComma] /== Right ()
+
+prop_plainChar_matched :: Property
+prop_plainChar_matched = property $ do
+  nonEscapee <- forAll $ (`notElem` K.escapees) `Gen.filter` Gen.alpha
+  parse K.plainChar "" [nonEscapee] === Right nonEscapee
+
+prop_plainChar_unmatched :: Property
+prop_plainChar_unmatched = property $ do
+  escapee <- forAll $ Gen.element K.escapees
+  parse K.plainChar "" [escapee] ?== isLeft
 
 prop_brackets :: Property
 prop_brackets = property $ error "TODO Implement prop_brackets"
 
 prop_braces :: Property
 prop_braces = property $ error "TODO Implement prop_braces"
-
-prop_plainChar :: Property
-prop_plainChar = property $ error "TODO Implement prop_plainChar"
 
 prop_escapedChar :: Property
 prop_escapedChar = property $ error "TODO Implement prop_escapedChar"

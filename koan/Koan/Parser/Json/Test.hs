@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
 
-module Check.Parser.Json where
+module Koan.Parser.Json.Test where
 
 import Control.Applicative
 import Control.Monad.IO.Class
@@ -9,7 +9,7 @@ import Data.Either
 import Data.List
 import Hedgehog
 import Text.Megaparsec
-import Hedgehog.Extra
+import HaskellWorks.Hedgehog
 import Hedgehog.Internal.Property (MonadTest(..), failDiff)
 import Hedgehog.Internal.Source (HasCallStack(..), withFrozenCallStack)
 

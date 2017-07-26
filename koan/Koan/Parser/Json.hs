@@ -35,6 +35,9 @@ symbol = L.symbol sc
 escapees :: String
 escapees = "\\\"\n\r\t"
 
+escapeeChars :: String
+escapeeChars = "\\\"nrt"
+
 -- Hint: Use between function
 brackets :: Parser a -> Parser a
 brackets = error "TODO Implement brackets"

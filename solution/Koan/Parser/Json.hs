@@ -35,6 +35,9 @@ symbol = L.symbol sc
 escapees :: String
 escapees = "\\\"\n\r\t"
 
+escapeeChars :: String
+escapeeChars = "\\\"nrt"
+
 comma :: Parser ()
 comma = symbol "," *> pure ()
 

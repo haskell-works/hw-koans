@@ -78,7 +78,7 @@ prop_comma_unmatched = property $ do
 
 prop_plainChar_matched :: Property
 prop_plainChar_matched = property $ do
-  nonEscapee <- forAll $ (`notElem` K.escapees) `Gen.filter` Gen.alpha
+  nonEscapee <- forAll $ (`notElem` K.escapees) `Gen.filter` Gen.ascii
   parse K.plainChar "" [nonEscapee] === Right nonEscapee
 
 prop_plainChar_unmatched :: Property
@@ -86,14 +86,28 @@ prop_plainChar_unmatched = property $ do
   escapee <- forAll $ Gen.element K.escapees
   parse K.plainChar "" [escapee] ?== isLeft
 
+prop_escapedChar_matched :: Property
+prop_escapedChar_matched = property $ do
+  nonEscapee  <- forAll $ (`elem` K.escapeeChars) `Gen.filter` Gen.ascii
+  text        <- forAll $ pure ['\\', nonEscapee]
+  parse K.escapedChar "" text === Right (read ['\'', '\\', nonEscapee, '\''])
+
+prop_escapedChar_unmatched_0 :: Property
+prop_escapedChar_unmatched_0 = property $ do
+  c <- forAll Gen.ascii
+  parse K.escapedChar "" [c] ?== isLeft
+
+prop_escapedChar_unmatched_1 :: Property
+prop_escapedChar_unmatched_1 = property $ do
+  nonEscapee  <- forAll $ (`notElem` K.escapeeChars) `Gen.filter` Gen.ascii
+  text        <- forAll $ pure ['\\', nonEscapee]
+  parse K.escapedChar "" text ?== isLeft
+
 prop_brackets :: Property
 prop_brackets = property $ error "TODO Implement prop_brackets"
 
 prop_braces :: Property
 prop_braces = property $ error "TODO Implement prop_braces"
-
-prop_escapedChar :: Property
-prop_escapedChar = property $ error "TODO Implement prop_escapedChar"
 
 prop_litString :: Property
 prop_litString = property $ error "TODO Implement prop_litString"

@@ -30,16 +30,18 @@ library
                       , Koan.Parser
                       , Koan.Parser.Csv
                       , Koan.Parser.Json
+                      , Koan.Parser.Json.Test
                       , Koan.Reader
                       , Koan.Simple
                       , Koan.Start
                       , Koan.State
   build-depends:        base >= 4.7 && < 5
+                      , attoparsec
                       , bytestring
                       , hedgehog
+                      , hw-hedgehog
                       , megaparsec
                       , mtl
-                      , attoparsec
                       , text
   default-language:     Haskell2010
 
@@ -62,6 +64,7 @@ test-suite koan-test
                       , Check.Parser.Csv
                       , Check.Parser.Csv.Ref
                       , Check.Parser.Json
+                      , Check.Parser.Json.Test
                       , Check.Reader
                       , Check.Start
                       , Check.State
@@ -72,6 +75,7 @@ test-suite koan-test
                       , text
                       , bytestring
                       , hedgehog
+                      , hw-hedgehog
                       , hw-koans
                       , megaparsec
                       , mtl

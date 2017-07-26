@@ -35,6 +35,9 @@ symbol = L.symbol sc
 escapees :: String
 escapees = "\\\"\n\r\t"
 
+comma :: Parser ()
+comma = symbol "," *> pure ()
+
 plainChar :: Parser Char
 plainChar = satisfy (`notElem` escapees)
 
@@ -54,9 +57,6 @@ litBool :: Parser Bool
 litBool
   =   symbol "true"   *> pure True
   <|> symbol "false"  *> pure False
-
-comma :: Parser ()
-comma = symbol "," *> pure ()
 
 brackets :: Parser a -> Parser a
 brackets = between (symbol "[") (symbol "]")

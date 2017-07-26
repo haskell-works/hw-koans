@@ -19,7 +19,7 @@ import qualified Koan.Parser.Json     as K
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
 
 enrolled :: Bool
-enrolled = False
+enrolled = True
 
 genBool :: MonadGen m => m Bool
 genBool = Gen.bool

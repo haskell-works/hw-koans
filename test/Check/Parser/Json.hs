@@ -5,10 +5,13 @@ module Check.Parser.Json where
 import Control.Applicative
 import Control.Monad.IO.Class
 import Data.Char
+import Data.Either
 import Data.List
 import Hedgehog
-import Hedgehog.Extra
 import Text.Megaparsec
+import Hedgehog.Extra
+import Hedgehog.Internal.Property (MonadTest(..), failDiff)
+import Hedgehog.Internal.Source (HasCallStack(..), withFrozenCallStack)
 
 import qualified Hedgehog.Gen         as Gen
 import qualified Hedgehog.Range       as Range
@@ -17,25 +20,28 @@ import qualified Koan.Parser.Json     as K
 {-# ANN module ("HLint: ignore Redundant do"        :: String) #-}
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
 
-genBool :: Monad m => Gen.Gen m Bool
+genBool :: MonadGen m => m Bool
 genBool = Gen.bool
 
-genString :: Monad m => Gen.Gen m String
+genString :: MonadGen m => m String
 genString = Gen.string (Range.constant 0 8) Gen.alpha
 
-genObject :: Monad m => Int -> Gen.Gen m [(String, K.Json)]
+genObject :: MonadGen m => Int -> m [(String, K.Json)]
 genObject n = Gen.list (Range.linear 0 2) (genField (n - 1))
 
-genArray :: Monad m => Int -> Gen.Gen m [K.Json]
+genArray :: MonadGen m => Int -> m [K.Json]
 genArray n = Gen.list (Range.linear 0 2) (genJson' (n - 1))
 
-genNumber :: Monad m => Gen.Gen m Double
+genNumber :: MonadGen m => m Double
 genNumber = Gen.double (Range.linearFrac (-100.0) 100.0)
 
-genJson :: Monad m => Gen.Gen m K.Json
+genJson :: MonadGen m => m K.Json
 genJson = genJson' 3
 
-genJson' :: Monad m => Int -> Gen.Gen m K.Json
+genField :: MonadGen m => Int -> m (String, K.Json)
+genField n = (,) <$> Gen.string (Range.constant 0 4) Gen.alpha <*> genJson' n
+
+genJson' :: MonadGen m => Int -> m K.Json
 genJson' n | n <= 0 = Gen.choice
   [ pure   K.JsonNull
   , K.JsonBool   <$> genBool
@@ -50,9 +56,6 @@ genJson' n = Gen.choice
   , K.JsonString <$> genString
   ]
 
-genField :: Monad m => Int -> Gen.Gen m (String, K.Json)
-genField n = (,) <$> Gen.string (Range.constant 0 4) Gen.alpha <*> genJson' n
-
 toString2 :: (String, K.Json) -> String
 toString2 (field, value) = show field ++ ":" ++ toString value
 
@@ -63,6 +66,15 @@ toString (K.JsonString  v) = show v
 toString (K.JsonArray   v) = "[" ++ intercalate "," (toString  <$> v) ++ "]"
 toString (K.JsonObject  v) = "{" ++ intercalate "," (toString2 <$> v) ++ "}"
 toString  K.JsonNull       = "null"
+
+prop_comma_matched :: Property
+prop_comma_matched = property $ do
+  parse K.comma "" "," === Right ()
+
+prop_comma_unmatched :: Property
+prop_comma_unmatched = property $ do
+  nonComma <- forAll $ (/= ',') `Gen.filter` Gen.unicode
+  parse K.comma "" [nonComma] /== Right ()
 
 prop_brackets :: Property
 prop_brackets = property $ error "TODO Implement prop_brackets"
@@ -81,9 +93,6 @@ prop_litString = property $ error "TODO Implement prop_litString"
 
 prop_litBool :: Property
 prop_litBool = property $ error "TODO Implement prop_litBool"
-
-prop_comma :: Property
-prop_comma = property $ error "TODO Implement prop_comma"
 
 prop_array :: Property
 prop_array = property $ error "TODO Implement prop_array"

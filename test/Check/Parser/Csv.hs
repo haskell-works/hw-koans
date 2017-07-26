@@ -17,7 +17,7 @@ import qualified Check.Parser.Csv.Ref as R
 {-# ANN module ("HLint: ignore Redundant do"        :: String) #-}
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
 
-genTextData :: Monad m => Gen.Gen m Char
+genTextData :: MonadGen m => m Char
 genTextData = chr <$> Gen.choice
   [ pure 0x20
   , pure 0x21
@@ -25,7 +25,7 @@ genTextData = chr <$> Gen.choice
   , Gen.enum 0x2D 0x7E
   ]
 
-genEscapable :: Monad m => Gen.Gen m String
+genEscapable :: MonadGen m => m String
 genEscapable = Gen.choice
   [ pure "\"\""
   , (:[]) <$> Gen.choice

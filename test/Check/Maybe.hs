@@ -4,21 +4,21 @@
 
 module Check.Maybe where
 
-import qualified Data.List           as P
-import qualified Hedgehog.Gen        as Gen
-import qualified Hedgehog.Range      as Range
-import qualified Prelude             as P
+import qualified Data.List      as P
+import qualified Hedgehog.Gen   as Gen
+import qualified Hedgehog.Range as Range
+import qualified Prelude        as P
 
-import           Control.Applicative
-import           Data.Maybe
-import           Hedgehog
-import           Hedgehog.Extra
-import           Koan.Maybe          as K
-import           Prelude             hiding (elem, filter)
+import Control.Applicative
+import Data.Maybe
+import Hedgehog
+import Hedgehog.Extra
+import Koan.Maybe          as K
+import Prelude             hiding (elem, filter)
 
 {-# ANN module ("HLint: Reduce duplication" :: String) #-}
 
-genMaybe :: Monad m => Gen m a -> Gen m (K.Maybe a)
+genMaybe :: MonadGen m => m a -> m (K.Maybe a)
 genMaybe g = do
     inJust <- Gen.bool
     if inJust

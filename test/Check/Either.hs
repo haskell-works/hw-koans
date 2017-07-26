@@ -4,28 +4,28 @@
 
 module Check.Either where
 
-import qualified Data.List           as P
-import qualified Data.Bifunctor      as Bi
-import qualified Hedgehog.Gen        as Gen
-import qualified Hedgehog.Range      as Range
-import qualified Prelude             as P
+import qualified Data.Bifunctor as Bi
+import qualified Data.List      as P
+import qualified Hedgehog.Gen   as Gen
+import qualified Hedgehog.Range as Range
+import qualified Prelude        as P
 
-import           Control.Applicative
-import           Data.Either         as P
-import           Hedgehog
-import           Hedgehog.Extra
-import           Koan.Either         as K
-import           Prelude             hiding (elem, filter)
+import Control.Applicative
+import Data.Either         as P
+import Hedgehog
+import Hedgehog.Extra
+import Koan.Either         as K
+import Prelude             hiding (elem, filter)
 
 toK :: P.Either a b -> K.Either a b
-toK (P.Left a) = K.Left a
+toK (P.Left a)  = K.Left a
 toK (P.Right b) = K.Right b
 
 frK :: K.Either a b -> P.Either a b
-frK (K.Left a) = P.Left a
+frK (K.Left a)  = P.Left a
 frK (K.Right b) = P.Right b
 
-genEither :: Monad m => Gen m a -> Gen m b -> Gen m (P.Either a b)
+genEither :: MonadGen m => m a -> m b -> m (P.Either a b)
 genEither genA genB =
   Gen.sized $ \n ->
     Gen.frequency [

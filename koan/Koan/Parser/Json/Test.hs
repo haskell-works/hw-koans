@@ -10,8 +10,6 @@ import Data.List
 import Hedgehog
 import Text.Megaparsec
 import HaskellWorks.Hedgehog
-import Hedgehog.Internal.Property (MonadTest(..), failDiff)
-import Hedgehog.Internal.Source (HasCallStack(..), withFrozenCallStack)
 
 import qualified Hedgehog.Gen         as Gen
 import qualified Hedgehog.Range       as Range
@@ -19,6 +17,9 @@ import qualified Koan.Parser.Json     as K
 
 {-# ANN module ("HLint: ignore Redundant do"        :: String) #-}
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
+
+enrolled :: Bool
+enrolled = False
 
 genBool :: MonadGen m => m Bool
 genBool = Gen.bool

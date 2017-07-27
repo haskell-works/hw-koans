@@ -10,8 +10,6 @@ import Data.List
 import Hedgehog
 import Text.Megaparsec
 import HaskellWorks.Hedgehog
-import Hedgehog.Internal.Property (MonadTest(..), failDiff)
-import Hedgehog.Internal.Source (HasCallStack(..), withFrozenCallStack)
 
 import qualified Hedgehog.Gen         as Gen
 import qualified Hedgehog.Range       as Range
@@ -20,152 +18,174 @@ import qualified Koan.Parser.Json     as K
 {-# ANN module ("HLint: ignore Redundant do"        :: String) #-}
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
 
+{-
+
+Relevant documentation:
+
+* https://hackage.haskell.org/package/hedgehog-0.5/docs/Hedgehog.html
+* https://hackage.haskell.org/package/hedgehog-0.5/docs/Hedgehog-Gen.html
+* https://hackage.haskell.org/package/hedgehog-0.5/docs/Hedgehog-Range.html
+
+Useful functions:
+
+* Gen.bool
+* Gen.string
+* Range.constant
+* Gen.alpha
+* Gen.list
+* Range.linear
+* Gen.double
+* Range.linearFrac
+* pure
+* forAll
+* Gen.filter
+* intercalate
+* Gen.ascii
+* Gen.element
+* (===)
+* (?==)
+* (/==)
+* elem
+* notElem
+* isLeft
+
+-}
+
+enrolled :: Bool
+enrolled = False
+
+-- Write a generator that generates Bool values
 genBool :: MonadGen m => m Bool
-genBool = Gen.bool
+genBool = error "TODO Implement genBool"
 
+-- Write a generator that generates String values
 genString :: MonadGen m => m String
-genString = Gen.string (Range.constant 0 8) Gen.alpha
+genString = error "TODO Implement genString"
 
-genObject :: MonadGen m => Int -> m [(String, K.Json)]
-genObject n = Gen.list (Range.linear 0 2) (genField (n - 1))
-
-genArray :: MonadGen m => Int -> m [K.Json]
-genArray n = Gen.list (Range.linear 0 2) (genJson' (n - 1))
-
+-- Write a generator that generates Double values
 genNumber :: MonadGen m => m Double
-genNumber = Gen.double (Range.linearFrac (-100.0) 100.0)
+genNumber = error "TODO Implement genNumber"
 
-genJson :: MonadGen m => m K.Json
-genJson = genJson' 3
-
+-- Write a generator that generates JSON object fields
 genField :: MonadGen m => Int -> m (String, K.Json)
-genField n = (,) <$> Gen.string (Range.constant 0 4) Gen.alpha <*> genJson' n
+genField = error "TODO Implement genField"
 
-genJson' :: MonadGen m => Int -> m K.Json
-genJson' n | n <= 0 = Gen.choice
-  [ pure   K.JsonNull
-  , K.JsonBool   <$> genBool
-  , K.JsonNumber <$> genNumber
-  ]
-genJson' n = Gen.choice
-  [ pure   K.JsonNull
-  , K.JsonBool   <$> genBool
-  , K.JsonNumber <$> genNumber
-  , K.JsonArray  <$> genArray n
-  , K.JsonObject <$> genObject n
-  , K.JsonString <$> genString
-  ]
+-- Write a generator that generates list of tuples that represents a Json
+-- object
+genObject :: MonadGen m => Int -> m [(String, K.Json)]
+genObject = error "TODO Implement genObject"
 
-toString2 :: (String, K.Json) -> String
-toString2 (field, value) = show field ++ ":" ++ toString value
+-- Write a generator that generates list of Json values
+genArray :: MonadGen m => Int -> m [K.Json]
+genArray = error "TODO Implement genArray"
 
+-- Write a generator that generates arbitrary JSON
+genJson :: MonadGen m => m K.Json
+genJson = error "TODO Implement genJson"
+
+-- Write a function that converts a Json to a String
 toString :: K.Json -> String
-toString (K.JsonBool    v) = if v then "true" else "false"
-toString (K.JsonNumber  v) = show v
-toString (K.JsonString  v) = show v
-toString (K.JsonArray   v) = "[" ++ intercalate "," (toString  <$> v) ++ "]"
-toString (K.JsonObject  v) = "{" ++ intercalate "," (toString2 <$> v) ++ "}"
-toString  K.JsonNull       = "null"
+toString = error "TODO Implement toString"
 
+-- Write a property that asserts parser successfully parses valid comma
 prop_comma_matched :: Property
 prop_comma_matched = property $ do
-  parse K.comma "" "," === Right ()
+  error "TODO: Implement prop_comma_matched"
 
+-- Write a property that asserts parser fails to parse invalid comma
 prop_comma_unmatched :: Property
 prop_comma_unmatched = property $ do
-  nonComma <- forAll $ (/= ',') `Gen.filter` Gen.ascii
-  parse K.comma "" [nonComma] /== Right ()
+  error "TODO: Implement prop_comma_unmatched"
 
+-- Write a property that asserts parser successfully parses valid plainChar
+-- a plainChar is a character that is not escaped.
 prop_plainChar_matched :: Property
 prop_plainChar_matched = property $ do
-  nonEscapee <- forAll $ (`notElem` K.escapees) `Gen.filter` Gen.ascii
-  parse K.plainChar "" [nonEscapee] === Right nonEscapee
+  error "TODO: Implement prop_plainChar_matched"
 
+-- Write a property that asserts parser fails to parse invalid plainChar
+-- a plainChar is a character that is not escaped.
 prop_plainChar_unmatched :: Property
 prop_plainChar_unmatched = property $ do
-  escapee <- forAll $ Gen.element K.escapees
-  parse K.plainChar "" [escapee] ?== isLeft
+  error "TODO: Implement prop_plainChar_unmatched"
 
+-- Write a property that asserts parser successfully parses valid escapedChar
+-- a escapedChar is one of these: \\ \" \n \r \t
 prop_escapedChar_matched :: Property
 prop_escapedChar_matched = property $ do
-  nonEscapee  <- forAll $ (`elem` K.escapeeChars) `Gen.filter` Gen.ascii
-  text        <- forAll $ pure ['\\', nonEscapee]
-  parse K.escapedChar "" text === Right (read ['\'', '\\', nonEscapee, '\''])
+  error "TODO: Implement prop_escapedChar_matched"
 
+-- Write a property that asserts parser fails to parse single character
 prop_escapedChar_unmatched_0 :: Property
 prop_escapedChar_unmatched_0 = property $ do
-  c <- forAll Gen.ascii
-  parse K.escapedChar "" [c] ?== isLeft
+  error "TODO: Implement prop_escapedChar_unmatched_0"
 
+-- Write a property that asserts parser fails to parse invalid escaped character
+-- i.e. an attempt to escape a character that is not an escapedChar.
 prop_escapedChar_unmatched_1 :: Property
 prop_escapedChar_unmatched_1 = property $ do
-  nonEscapee  <- forAll $ (`notElem` K.escapeeChars) `Gen.filter` Gen.ascii
-  text        <- forAll $ pure ['\\', nonEscapee]
-  parse K.escapedChar "" text ?== isLeft
+  error "TODO: Implement prop_escapedChar_unmatched_1"
 
+-- Write a property that asserts parser successfully parses true or false
 prop_litBool_matched :: Property
 prop_litBool_matched = property $ do
-  text <- forAll $ Gen.element ["true", "false"]
-  parse K.litBool "" text === Right (text == "true")
+  error "TODO: Implement prop_litBool_matched"
 
+-- Write a property that asserts parser fails to parse a sequence of alpha
+-- characters that is not either true or false
 prop_litBool_unmatched :: Property
 prop_litBool_unmatched = property $ do
-  text <- forAll $ (`notElem` ["true", "false"]) `Gen.filter` Gen.string (Range.linear 4 5) Gen.alpha
-  parse K.litBool "" text ?== isLeft
+  error "TODO: Implement prop_litBool_unmatched"
 
+-- Write a property that asserts parser successfully parses brackets
 prop_brackets_matched :: Property
 prop_brackets_matched = property $ do
-  pad1 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  pad2 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  pad3 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  text <- forAll $ pure $ "[" ++ pad1 ++ "true" ++ pad2 ++ "]" ++ pad3
-  parse (K.brackets K.litBool) "" text === Right True
+  error "TODO: Implement prop_brackets_matched"
 
+-- Write a property that asserts parser fails to parse when closing brackets
+-- missing
 prop_brackets_unmatched :: Property
 prop_brackets_unmatched = property $ do
-  pad1 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  pad2 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  text <- forAll $ pure $ "[" ++ pad1 ++ "true" ++ pad2
-  parse (K.brackets K.litBool) "" text ?== isLeft
+  error "TODO: Implement prop_brackets_unmatched"
 
+-- Write a property that asserts parser successfully parses braces
 prop_braces_matched :: Property
 prop_braces_matched = property $ do
-  pad1 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  pad2 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  pad3 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  text <- forAll $ pure $ "{" ++ pad1 ++ "true" ++ pad2 ++ "}" ++ pad3
-  parse (K.braces K.litBool) "" text === Right True
+  error "TODO: Implement prop_braces_matched"
 
+-- Write a property that asserts parser fails to parse when closing braces
+-- missing
 prop_braces_unmatched :: Property
 prop_braces_unmatched = property $ do
-  pad1 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  pad2 <- forAll $ Gen.string (Range.linear 0 2) (pure ' ')
-  text <- forAll $ pure $ "{" ++ pad1 ++ "true" ++ pad2
-  parse (K.braces K.litBool) "" text ?== isLeft
+  error "TODO: Implement prop_braces_unmatched"
 
 prop_litString :: Property
-prop_litString = property $ error "TODO Implement prop_litString"
+prop_litString = property $ do
+  error "TODO Implement prop_litString"
 
 prop_array :: Property
-prop_array = property $ error "TODO Implement prop_array"
+prop_array = property $ do
+  error "TODO Implement prop_array"
 
 prop_field :: Property
-prop_field = property $ error "TODO Implement prop_field"
+prop_field = property $ do
+  error "TODO Implement prop_field"
 
 prop_object :: Property
-prop_object = property $ error "TODO Implement prop_object"
+prop_object = property $ do
+  error "TODO Implement prop_object"
 
 prop_nullKeyword :: Property
-prop_nullKeyword = property $ error "TODO Implement prop_nullKeyword"
+prop_nullKeyword = property $ do
+  error "TODO Implement prop_nullKeyword"
 
 prop_number :: Property
-prop_number = property $ error "TODO Implement prop_number"
+prop_number = property $ do
+  error "TODO Implement prop_number"
 
 prop_json :: Property
 prop_json = property $ do
-  j <- forAll   genJson
-  s <- forAll $ pure (toString j)
-  parse K.json "" s === Right j
+  error "TODO Implement prop_json"
 
 tests :: IO Bool
 tests = checkSequential $ reversed $$discover

@@ -14,6 +14,7 @@ import qualified Check.Ord
 import qualified Check.Parser
 import qualified Check.Parser.Csv
 import qualified Check.Parser.Json
+import qualified Check.Parser.Json.Test
 import qualified Check.Reader
 import qualified Check.Simple
 import qualified Check.Start
@@ -36,6 +37,7 @@ import qualified Koan.Ord
 import qualified Koan.Parser
 import qualified Koan.Parser.Csv
 import qualified Koan.Parser.Json
+import qualified Koan.Parser.Json.Test
 import qualified Koan.Reader
 import qualified Koan.Simple
 import qualified Koan.Start
@@ -47,24 +49,25 @@ countElem :: Eq a => a -> [a] -> Int
 countElem i = length . filter (i==)
 
 tests =
-  [ (Koan.Alternative.enrolled  , Check.Alternative.tests )
-  , (Koan.Applicative.enrolled  , Check.Applicative.tests )
-  , (Koan.Either.enrolled       , Check.Either.tests      )
-  , (Koan.Eq.enrolled           , Check.Eq.tests          )
-  , (Koan.Function.enrolled     , Check.Function.tests    )
-  , (Koan.Functor.enrolled      , Check.Functor.tests     )
-  , (Koan.List.enrolled         , Check.List.tests        )
-  , (Koan.Maybe.enrolled        , Check.Maybe.tests       )
-  , (Koan.Monad.enrolled        , Check.Monad.tests       )
-  , (Koan.Ord.enrolled          , Check.Ord.tests         )
-  , (Koan.Parser.enrolled       , Check.Parser.tests      )
-  , (Koan.Parser.Csv.enrolled   , Check.Parser.Csv.tests  )
-  , (Koan.Parser.Json.enrolled  , Check.Parser.Json.tests )
-  , (Koan.Reader.enrolled       , Check.Reader.tests      )
-  , (Koan.Simple.enrolled       , Check.Simple.tests      )
-  , (Koan.Start.enrolled        , Check.Start.tests       )
-  , (Koan.State.enrolled        , Check.State.tests       )
-  , (Koan.GeoFeedParser.enrolled, Check.GeoFeedParser.tests)
+  [ (Koan.Alternative.enrolled        , Check.Alternative.tests       )
+  , (Koan.Applicative.enrolled        , Check.Applicative.tests       )
+  , (Koan.Either.enrolled             , Check.Either.tests            )
+  , (Koan.Eq.enrolled                 , Check.Eq.tests                )
+  , (Koan.Function.enrolled           , Check.Function.tests          )
+  , (Koan.Functor.enrolled            , Check.Functor.tests           )
+  , (Koan.List.enrolled               , Check.List.tests              )
+  , (Koan.Maybe.enrolled              , Check.Maybe.tests             )
+  , (Koan.Monad.enrolled              , Check.Monad.tests             )
+  , (Koan.Ord.enrolled                , Check.Ord.tests               )
+  , (Koan.Parser.enrolled             , Check.Parser.tests            )
+  , (Koan.Parser.Csv.enrolled         , Check.Parser.Csv.tests        )
+  , (Koan.Parser.Json.enrolled        , Check.Parser.Json.tests       )
+  , (Koan.Parser.Json.Test.enrolled   , Check.Parser.Json.Test.tests  )
+  , (Koan.Reader.enrolled             , Check.Reader.tests            )
+  , (Koan.Simple.enrolled             , Check.Simple.tests            )
+  , (Koan.Start.enrolled              , Check.Start.tests             )
+  , (Koan.State.enrolled              , Check.State.tests             )
+  , (Koan.GeoFeedParser.enrolled      , Check.GeoFeedParser.tests     )
   ]
 
 main :: IO ()

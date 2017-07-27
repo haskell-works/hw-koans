@@ -170,6 +170,17 @@ prop_braces_unmatched :: Property
 prop_braces_unmatched = property $ do
   error "TODO: Implement prop_braces_unmatched"
 
+-- Write a property that asserts parser successfully parses numbers
+prop_number_matched :: Property
+prop_number_matched = property $ do
+  error "TODO Implement prop_number"
+
+-- Write a property that asserts parser fails when trying to parse a number that is not actually a
+-- number.
+prop_number_unmatched :: Property
+prop_number_unmatched = property $ do
+  error "TODO Implement prop_number"
+
 prop_litString :: Property
 prop_litString = property $ do
   error "TODO Implement prop_litString"
@@ -185,10 +196,6 @@ prop_field = property $ do
 prop_object :: Property
 prop_object = property $ do
   error "TODO Implement prop_object"
-
-prop_number :: Property
-prop_number = property $ do
-  error "TODO Implement prop_number"
 
 prop_json :: Property
 prop_json = property $ do

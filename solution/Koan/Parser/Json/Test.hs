@@ -166,8 +166,15 @@ prop_field = property $ error "TODO Implement prop_field"
 prop_object :: Property
 prop_object = property $ error "TODO Implement prop_object"
 
-prop_number :: Property
-prop_number = property $ error "TODO Implement prop_number"
+prop_number_matched :: Property
+prop_number_matched = property $ do
+  num <- forAll $ Gen.double (Range.linearFracFrom 0 (-1000) 1000)
+  parse K.number "" (show num) === Right num
+
+prop_number_unmatched :: Property
+prop_number_unmatched = property $ do
+  num <- forAll $ Gen.string (Range.linear 1 64) Gen.alpha
+  parse K.number "" num ?== isLeft
 
 prop_json :: Property
 prop_json = property $ do

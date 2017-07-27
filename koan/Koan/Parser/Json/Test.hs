@@ -18,104 +18,143 @@ import qualified Koan.Parser.Json     as K
 {-# ANN module ("HLint: ignore Redundant do"        :: String) #-}
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
 
+{-
+
+Relevant documentation:
+
+* https://hackage.haskell.org/package/hedgehog-0.5/docs/Hedgehog.html
+* https://hackage.haskell.org/package/hedgehog-0.5/docs/Hedgehog-Gen.html
+* https://hackage.haskell.org/package/hedgehog-0.5/docs/Hedgehog-Range.html
+
+Useful functions:
+
+* Gen.bool
+* Gen.string
+* Range.constant
+* Gen.alpha
+* Gen.list
+* Range.linear
+* Gen.double
+* Range.linearFrac
+* pure
+* forAll
+* Gen.filter
+* intercalate
+* Gen.ascii
+* Gen.element
+* (===)
+* (?==)
+* (/==)
+* elem
+* notElem
+* isLeft
+
+-}
+
 enrolled :: Bool
 enrolled = False
 
+-- Write a generator that generates Bool values
 genBool :: MonadGen m => m Bool
-genBool = Gen.bool
+genBool = error "TODO Implement genBool"
 
+-- Write a generator that generates String values
 genString :: MonadGen m => m String
-genString = Gen.string (Range.constant 0 8) Gen.alpha
+genString = error "TODO Implement genString"
 
-genObject :: MonadGen m => Int -> m [(String, K.Json)]
-genObject n = Gen.list (Range.linear 0 2) (genField (n - 1))
-
-genArray :: MonadGen m => Int -> m [K.Json]
-genArray n = Gen.list (Range.linear 0 2) (genJson' (n - 1))
-
+-- Write a generator that generates Double values
 genNumber :: MonadGen m => m Double
-genNumber = Gen.double (Range.linearFrac (-100.0) 100.0)
+genNumber = error "TODO Implement genNumber"
 
-genJson :: MonadGen m => m K.Json
-genJson = genJson' 3
-
+-- Write a generator that generates JSON object fields
 genField :: MonadGen m => Int -> m (String, K.Json)
-genField n = (,) <$> Gen.string (Range.constant 0 4) Gen.alpha <*> genJson' n
+genField = error "TODO Implement genField"
 
-genJson' :: MonadGen m => Int -> m K.Json
-genJson' n | n <= 0 = Gen.choice
-  [ pure   K.JsonNull
-  , K.JsonBool   <$> genBool
-  , K.JsonNumber <$> genNumber
-  ]
-genJson' n = Gen.choice
-  [ pure   K.JsonNull
-  , K.JsonBool   <$> genBool
-  , K.JsonNumber <$> genNumber
-  , K.JsonArray  <$> genArray n
-  , K.JsonObject <$> genObject n
-  , K.JsonString <$> genString
-  ]
+-- Write a generator that generates list of tuples that represents a Json
+-- object
+genObject :: MonadGen m => Int -> m [(String, K.Json)]
+genObject = error "TODO Implement genObject"
 
-toString2 :: (String, K.Json) -> String
-toString2 (field, value) = show field ++ ":" ++ toString value
+-- Write a generator that generates list of Json values
+genArray :: MonadGen m => Int -> m [K.Json]
+genArray = error "TODO Implement genArray"
 
+-- Write a generator that generates arbitrary JSON
+genJson :: MonadGen m => m K.Json
+genJson = error "TODO Implement genJson"
+
+-- Write a function that converts a Json to a String
 toString :: K.Json -> String
-toString (K.JsonBool    v) = if v then "true" else "false"
-toString (K.JsonNumber  v) = show v
-toString (K.JsonString  v) = show v
-toString (K.JsonArray   v) = "[" ++ intercalate "," (toString  <$> v) ++ "]"
-toString (K.JsonObject  v) = "{" ++ intercalate "," (toString2 <$> v) ++ "}"
-toString  K.JsonNull       = "null"
+toString = error "TODO Implement toString"
 
+-- Write a property that asserts parser successfully parses valid comma
 prop_comma_matched :: Property
 prop_comma_matched = property $ do
   error "TODO: Implement prop_comma_matched"
 
+-- Write a property that asserts parser fails to parse invalid comma
 prop_comma_unmatched :: Property
 prop_comma_unmatched = property $ do
   error "TODO: Implement prop_comma_unmatched"
 
+-- Write a property that asserts parser successfully parses valid plainChar
+-- a plainChar is a character that is not escaped.
 prop_plainChar_matched :: Property
 prop_plainChar_matched = property $ do
   error "TODO: Implement prop_plainChar_matched"
 
+-- Write a property that asserts parser fails to parse invalid plainChar
+-- a plainChar is a character that is not escaped.
 prop_plainChar_unmatched :: Property
 prop_plainChar_unmatched = property $ do
   error "TODO: Implement prop_plainChar_unmatched"
 
+-- Write a property that asserts parser successfully parses valid escapedChar
+-- a escapedChar is one of these: \\ \" \n \r \t
 prop_escapedChar_matched :: Property
 prop_escapedChar_matched = property $ do
   error "TODO: Implement prop_escapedChar_matched"
 
+-- Write a property that asserts parser fails to parse single character
 prop_escapedChar_unmatched_0 :: Property
 prop_escapedChar_unmatched_0 = property $ do
   error "TODO: Implement prop_escapedChar_unmatched_0"
 
+-- Write a property that asserts parser fails to parse invalid escaped character
+-- i.e. an attempt to escape a character that is not an escapedChar.
 prop_escapedChar_unmatched_1 :: Property
 prop_escapedChar_unmatched_1 = property $ do
   error "TODO: Implement prop_escapedChar_unmatched_1"
 
+-- Write a property that asserts parser successfully parses true or false
 prop_litBool_matched :: Property
 prop_litBool_matched = property $ do
   error "TODO: Implement prop_litBool_matched"
 
+-- Write a property that asserts parser fails to parse a sequence of alpha
+-- characters that is not either true or false
 prop_litBool_unmatched :: Property
 prop_litBool_unmatched = property $ do
   error "TODO: Implement prop_litBool_unmatched"
 
+-- Write a property that asserts parser successfully parses brackets
 prop_brackets_matched :: Property
 prop_brackets_matched = property $ do
   error "TODO: Implement prop_brackets_matched"
 
+-- Write a property that asserts parser fails to parse when closing brackets
+-- missing
 prop_brackets_unmatched :: Property
 prop_brackets_unmatched = property $ do
   error "TODO: Implement prop_brackets_unmatched"
 
+-- Write a property that asserts parser successfully parses braces
 prop_braces_matched :: Property
 prop_braces_matched = property $ do
   error "TODO: Implement prop_braces_matched"
 
+-- Write a property that asserts parser fails to parse when closing braces
+-- missing
 prop_braces_unmatched :: Property
 prop_braces_unmatched = property $ do
   error "TODO: Implement prop_braces_unmatched"

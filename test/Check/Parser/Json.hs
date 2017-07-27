@@ -153,20 +153,28 @@ prop_braces_unmatched = property $ do
   text <- forAll $ pure $ "{" ++ pad1 ++ "true" ++ pad2
   parse (K.braces K.litBool) "" text ?== isLeft
 
-prop_litString :: Property
-prop_litString = property $ error "TODO Implement prop_litString"
+prop_litString_matched :: Property
+prop_litString_matched = property $ do
+  value <- forAll $ Gen.string (Range.linear 0 10) (Gen.alphaNum <|> Gen.element (' ':K.escapees))
+  text  <- forAll $ pure $ show value
+  parse K.litString "" text === Right value
 
-prop_array :: Property
-prop_array = property $ error "TODO Implement prop_array"
+prop_litString_unmatched :: Property
+prop_litString_unmatched = property $ do
+  text <- forAll $ Gen.string (Range.linear 0 10) Gen.alphaNum
+  parse K.litString "" text ?== isLeft
 
-prop_field :: Property
-prop_field = property $ error "TODO Implement prop_field"
-
-prop_object :: Property
-prop_object = property $ error "TODO Implement prop_object"
-
-prop_number :: Property
-prop_number = property $ error "TODO Implement prop_number"
+-- prop_array :: Property
+-- prop_array = property $ error "TODO Implement prop_array"
+--
+-- prop_field :: Property
+-- prop_field = property $ error "TODO Implement prop_field"
+--
+-- prop_object :: Property
+-- prop_object = property $ error "TODO Implement prop_object"
+--
+-- prop_number :: Property
+-- prop_number = property $ error "TODO Implement prop_number"
 
 prop_json :: Property
 prop_json = property $ do

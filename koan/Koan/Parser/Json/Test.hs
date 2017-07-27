@@ -181,9 +181,16 @@ prop_number_unmatched :: Property
 prop_number_unmatched = property $ do
   error "TODO Implement prop_number"
 
-prop_litString :: Property
-prop_litString = property $ do
-  error "TODO Implement prop_litString"
+-- Write a property that asserts parser successfully parses a string literal
+prop_litString_matched :: Property
+prop_litString_matched = property $ do
+  error "TODO Implement prop_litString_matched"
+
+-- Write a property that asserts parser fails to parse text that is not
+-- a string literal.
+prop_litString_unmatched :: Property
+prop_litString_unmatched = property $ do
+  error "TODO Implement prop_litString_unmatched"
 
 prop_array :: Property
 prop_array = property $ do

@@ -104,6 +104,16 @@ prop_escapedChar_unmatched_1 = property $ do
   text        <- forAll $ pure ['\\', nonEscapee]
   parse K.escapedChar "" text ?== isLeft
 
+prop_nullKeyword_matched :: Property
+prop_nullKeyword_matched = property $ do
+  text <- forAll $ Gen.element ["null"]
+  parse K.nullKeyword "" text === Right ()
+
+prop_nullKeyword_unmatched :: Property
+prop_nullKeyword_unmatched = property $ do
+  text <- forAll $ (`notElem` ["null"]) `Gen.filter` Gen.string (Range.linear 4 5) Gen.alpha
+  parse K.nullKeyword "" text ?== isLeft
+
 prop_litBool_matched :: Property
 prop_litBool_matched = property $ do
   text <- forAll $ Gen.element ["true", "false"]
@@ -155,9 +165,6 @@ prop_field = property $ error "TODO Implement prop_field"
 
 prop_object :: Property
 prop_object = property $ error "TODO Implement prop_object"
-
-prop_nullKeyword :: Property
-prop_nullKeyword = property $ error "TODO Implement prop_nullKeyword"
 
 prop_number :: Property
 prop_number = property $ error "TODO Implement prop_number"

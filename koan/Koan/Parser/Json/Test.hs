@@ -126,6 +126,17 @@ prop_escapedChar_unmatched_1 :: Property
 prop_escapedChar_unmatched_1 = property $ do
   error "TODO: Implement prop_escapedChar_unmatched_1"
 
+-- Write a property that asserts parser successfully parses null
+prop_nullKeyword :: Property
+prop_nullKeyword = property $ do
+  error "TODO Implement prop_nullKeyword"
+
+-- Write a property that asserts parser fails to parse a sequence of alpha
+-- characters that is not null
+prop_nullKeyword_unmatched :: Property
+prop_nullKeyword_unmatched = property $ do
+  error "TODO: Implement prop_nullKeyword_unmatched"
+
 -- Write a property that asserts parser successfully parses true or false
 prop_litBool_matched :: Property
 prop_litBool_matched = property $ do
@@ -174,10 +185,6 @@ prop_field = property $ do
 prop_object :: Property
 prop_object = property $ do
   error "TODO Implement prop_object"
-
-prop_nullKeyword :: Property
-prop_nullKeyword = property $ do
-  error "TODO Implement prop_nullKeyword"
 
 prop_number :: Property
 prop_number = property $ do

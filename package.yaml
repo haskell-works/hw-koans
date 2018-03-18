@@ -1,0 +1,54 @@
+name: hw-koans
+version: '0.1.0.0'
+category: Web
+author: John Ky
+maintainer: mnewhoggy@gmail.com
+copyright: 2017-2018 John Ky
+license: BSD3
+github: githubuser/hw-koans
+extra-source-files:
+- README.md
+dependencies:
+- attoparsec
+- bytestring
+- hedgehog
+- hw-hedgehog
+- megaparsec
+- mtl
+- text
+library:
+  source-dirs: koan
+  exposed-modules:
+  - Koan
+  - Koan.Alternative
+  - Koan.Applicative
+  - Koan.Either
+  - Koan.Eq
+  - Koan.GeoFeedParser
+  - Koan.Function
+  - Koan.Functor
+  - Koan.List
+  - Koan.Maybe
+  - Koan.Monad
+  - Koan.Ord
+  - Koan.Parser
+  - Koan.Parser.Csv
+  - Koan.Parser.Json
+  - Koan.Parser.Json.Test
+  - Koan.Reader
+  - Koan.Simple
+  - Koan.Start
+  - Koan.State
+  dependencies:
+  - base >=4.7 && <5
+tests:
+  koan-test:
+    main: Main.hs
+    source-dirs: test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - hw-koans

@@ -75,7 +75,7 @@ prop_comma_matched = property $ do
 prop_comma_unmatched :: Property
 prop_comma_unmatched = property $ do
   nonComma <- forAll $ (/= ',') `Gen.filter` Gen.ascii
-  parse K.comma "" [nonComma] /== Right ()
+  parse K.comma "" [nonComma] ?== isLeft
 
 prop_plainChar_matched :: Property
 prop_plainChar_matched = property $ do

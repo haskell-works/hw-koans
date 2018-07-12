@@ -1,14 +1,7 @@
-resolver: lts-9.1
+resolver: lts-12.0
 
 packages:
 - '.'
-- location:
-    git: git@github.com:haskell-works/hw-hedgehog.git
-    commit: 0fd750bbbf733045027e1bc4a61f2b0df63591c7
-  extra-dep: true
-
-extra-deps:
-  - hedgehog-0.5
 
 flags: {}
 

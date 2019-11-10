@@ -1,5 +1,9 @@
 module Main where
 
+import Control.Monad
+import Data.Maybe
+import Data.Monoid
+
 import qualified Check.Alternative
 import qualified Check.Applicative
 import qualified Check.Either
@@ -11,17 +15,10 @@ import qualified Check.List
 import qualified Check.Maybe
 import qualified Check.Monad
 import qualified Check.Ord
-import qualified Check.Parser
-import qualified Check.Parser.Csv
-import qualified Check.Parser.Json
-import qualified Check.Parser.Json.Test
 import qualified Check.Reader
 import qualified Check.Simple
 import qualified Check.Start
 import qualified Check.State
-import           Control.Monad
-import           Data.Maybe
-import           Data.Monoid
 import qualified Koan
 import qualified Koan.Alternative
 import qualified Koan.Applicative
@@ -34,10 +31,6 @@ import qualified Koan.List
 import qualified Koan.Maybe
 import qualified Koan.Monad
 import qualified Koan.Ord
-import qualified Koan.Parser
-import qualified Koan.Parser.Csv
-import qualified Koan.Parser.Json
-import qualified Koan.Parser.Json.Test
 import qualified Koan.Reader
 import qualified Koan.Simple
 import qualified Koan.Start
@@ -59,10 +52,6 @@ tests =
   , (Koan.Maybe.enrolled              , Check.Maybe.tests             )
   , (Koan.Monad.enrolled              , Check.Monad.tests             )
   , (Koan.Ord.enrolled                , Check.Ord.tests               )
-  , (Koan.Parser.enrolled             , Check.Parser.tests            )
-  , (Koan.Parser.Csv.enrolled         , Check.Parser.Csv.tests        )
-  , (Koan.Parser.Json.enrolled        , Check.Parser.Json.tests       )
-  , (Koan.Parser.Json.Test.enrolled   , Check.Parser.Json.Test.tests  )
   , (Koan.Reader.enrolled             , Check.Reader.tests            )
   , (Koan.Simple.enrolled             , Check.Simple.tests            )
   , (Koan.Start.enrolled              , Check.Start.tests             )

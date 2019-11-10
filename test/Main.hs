@@ -35,6 +35,8 @@ import qualified Koan.Reader
 import qualified Koan.Simple
 import qualified Koan.Start
 import qualified Koan.State
+import qualified System.Exit         as IO
+import qualified System.IO           as IO
 
 {- | Returns a count of the number of times the given element occured in the
 given list. -}
@@ -65,14 +67,16 @@ main = do
     if enrolled || Koan.allEnrolled
       then Just <$> test else return Nothing
   let suites = catMaybes results
-  let numSuites = length suites
+  let numModules = length suites
   let numSuccesses    = countElem True suites
   let numFailures     = countElem False suites
   let numNotEnrolled  = countElem Nothing results
   putStrLn ""
   putStrLn ""
-  if numFailures == 0
-    then putStrLn $ "All enrolled " <> show numSuites <> " test suites succeeded"
-    else putStrLn $ show numFailures <> " out of " <> show numSuites <> " test suites failed"
-  when (numNotEnrolled > 0) $
+  when (numNotEnrolled > 0) $ do
     putStrLn $ show numNotEnrolled <> " suites not enrolled"
+  if numFailures == 0
+    then putStrLn $ "All enrolled " <> show numModules <> " test modules succeeded"
+    else do
+      putStrLn $ show numFailures <> " out of " <> show numModules <> " test modules failed"
+      IO.exitFailure

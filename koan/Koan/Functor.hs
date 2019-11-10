@@ -1,6 +1,6 @@
 module Koan.Functor where
 
-import           Prelude hiding (Functor, fmap, (<$), (<$>))
+import Prelude hiding (Functor, fmap, (<$), (<$>))
 
 enrolled :: Bool
 enrolled = False

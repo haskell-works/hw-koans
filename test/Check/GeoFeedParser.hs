@@ -72,14 +72,6 @@ prop_countryCode = property $ do
   s <- forAll $ Gen.string (Range.linear 1 3) Gen.alpha
   runParserStr K.countryCode s === Right (K.CountryCode s)
 
-prop_row :: Property
-prop_row = property $ do
-  ip1 <- forAll genIp
-  ip2 <- forAll genIp
-  s <- forAll $ Gen.string (Range.linear 1 3) Gen.alpha
-  let str = intercalate "|" [ipToStr ip1, ipToStr ip2, s]
-  runParserStr K.row str === Right (K.FeedRow ip1 ip2 (Just $ K.CountryCode s))
-
 tests :: IO Bool
 tests = checkSequential $ reversed $$(discover)
 
@@ -91,11 +83,6 @@ runParser = P.parseOnly
 
 runParserShow :: Show a => P.Parser b -> a -> Either String b
 runParserShow p a = P.parseOnly p (BSC.pack $ show a)
-
-genIp :: MonadGen m => m K.IPv4
-genIp = do
-  [a,b,c,d] <- Gen.list (Range.singleton 4) (Gen.int (Range.linear 0 255))
-  return $ K.IPv4 a b c d
 
 ipToStr (K.IPv4 a b c d) =
   intercalate "." (show <$> [a,b,c,d])

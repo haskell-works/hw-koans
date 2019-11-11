@@ -19,5 +19,4 @@ cabal.sandbox.config
 /.stack-work/
 /result
 /deps
-
-.stack-work
+/run-solutions.conf

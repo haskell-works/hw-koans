@@ -35,6 +35,9 @@ common config
 common hw-koans
   build-depends: hw-koans
 
+common hw-koans-solution
+  build-depends: hw-koans-solution
+
 library
   import:               base, config
                       , attoparsec
@@ -94,5 +97,68 @@ test-suite koan-test
                         Check.State
                         Hedgehog.Extra
                         Paths_hw_koans
+  hs-source-dirs:       test
+  ghc-options:          -threaded -rtsopts -with-rtsopts=-N
+
+
+library hw-koans-solution
+  import:               base, config
+                      , attoparsec
+                      , bytestring
+                      , hedgehog
+                      , hw-hedgehog
+                      , megaparsec
+                      , mtl
+                      , text
+  exposed-modules:      Koan
+                        Koan.Alternative
+                        Koan.Applicative
+                        Koan.Either
+                        Koan.Eq
+                        Koan.Function
+                        Koan.Functor
+                        Koan.GeoFeedParser
+                        Koan.List
+                        Koan.Maybe
+                        Koan.Monad
+                        Koan.Ord
+                        Koan.Reader
+                        Koan.Simple
+                        Koan.Start
+                        Koan.State
+  other-modules:        Paths_hw_koans
+  autogen-modules:      Paths_hw_koans
+  hs-source-dirs:       solution
+
+test-suite hw-koans-solution-test
+  import:               base, config
+                      , attoparsec
+                      , bytestring
+                      , hedgehog
+                      , hw-hedgehog
+                      , hw-koans-solution
+                      , megaparsec
+                      , mtl
+                      , text
+  type:                 exitcode-stdio-1.0
+  main-is:              Main.hs
+  other-modules:        Check.Alternative
+                        Check.Applicative
+                        Check.Either
+                        Check.Eq
+                        Check.Function
+                        Check.Functor
+                        Check.GeoFeedParser
+                        Check.List
+                        Check.Maybe
+                        Check.Monad
+                        Check.Ord
+                        Check.Reader
+                        Check.Simple
+                        Check.Start
+                        Check.State
+                        Hedgehog.Extra
+                        Paths_hw_koans
+  autogen-modules:      Paths_hw_koans
   hs-source-dirs:       test
   ghc-options:          -threaded -rtsopts -with-rtsopts=-N

@@ -1,6 +1,6 @@
 module Koan.Maybe where
 
-import           Prelude hiding (Maybe (..))
+import Prelude hiding (Maybe (..))
 
 enrolled :: Bool
 enrolled = False

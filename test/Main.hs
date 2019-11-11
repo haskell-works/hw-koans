@@ -35,8 +35,32 @@ import qualified Koan.Reader
 import qualified Koan.Simple
 import qualified Koan.Start
 import qualified Koan.State
+import qualified System.Directory    as IO
+import qualified System.Environment  as IO
 import qualified System.Exit         as IO
 import qualified System.IO           as IO
+import qualified System.IO.Unsafe    as IO
+
+runTests :: Bool
+runTests = IO.unsafePerformIO $ do
+  progName <- IO.getProgName
+  if progName == "hw-koans-solution-test"
+    then do
+      maybeInCi <- IO.lookupEnv "CI"
+      case maybeInCi of
+        Just _ -> do
+          IO.putStrLn "CI environment detected.  Running solutions."
+          return True
+        Nothing -> do
+          runSolutionsConfigExists <- IO.doesFileExist "run-solutions.conf"
+          if runSolutionsConfigExists
+            then do
+              IO.putStrLn "Running solutions."
+              return True
+            else do
+              IO.putStrLn "Solutions tests not run.  Run `touch run-solutions.conf` to enable."
+              return False
+    else return False
 
 {- | Returns a count of the number of times the given element occured in the
 given list. -}
@@ -63,20 +87,21 @@ tests =
 
 main :: IO ()
 main = do
-  results <- forM tests $ \(enrolled, test) ->
-    if enrolled || Koan.allEnrolled
-      then Just <$> test else return Nothing
-  let suites = catMaybes results
-  let numModules = length suites
-  let numSuccesses    = countElem True suites
-  let numFailures     = countElem False suites
-  let numNotEnrolled  = countElem Nothing results
-  putStrLn ""
-  putStrLn ""
-  when (numNotEnrolled > 0) $ do
-    putStrLn $ show numNotEnrolled <> " suites not enrolled"
-  if numFailures == 0
-    then putStrLn $ "All enrolled " <> show numModules <> " test modules succeeded"
-    else do
-      putStrLn $ show numFailures <> " out of " <> show numModules <> " test modules failed"
-      IO.exitFailure
+  when runTests $ do
+    results <- forM tests $ \(enrolled, test) ->
+      if enrolled || Koan.allEnrolled
+        then Just <$> test else return Nothing
+    let suites = catMaybes results
+    let numModules = length suites
+    let numSuccesses    = countElem True suites
+    let numFailures     = countElem False suites
+    let numNotEnrolled  = countElem Nothing results
+    putStrLn ""
+    putStrLn ""
+    when (numNotEnrolled > 0) $ do
+      putStrLn $ show numNotEnrolled <> " suites not enrolled"
+    if numFailures == 0
+      then putStrLn $ "All enrolled " <> show numModules <> " test modules succeeded"
+      else do
+        putStrLn $ show numFailures <> " out of " <> show numModules <> " test modules failed"
+        IO.exitFailure

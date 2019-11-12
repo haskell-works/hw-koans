@@ -23,6 +23,9 @@ tail = error "TODO: implement tail"
 last :: [a] -> a
 last = error "TODO: implement last"
 
+init :: [a] -> [a]
+init = error "TODO: implement init"
+
 -- Example:
 --   reverse [1, 2, 3, 4] = [4, 3, 2, 1]
 reverse :: [a] -> [a]

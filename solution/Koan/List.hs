@@ -3,7 +3,9 @@ module Koan.List where
 import Koan.Applicative as K
 import Koan.Functor     as K
 import Koan.Monad       as K
-import Prelude          hiding (concat, head, init, intercalate, intersperse, last, length, reverse, tail, transpose, (++))
+import Prelude          (Bool (..), Int, Num (..), flip, otherwise)
+
+import qualified Prelude as P
 
 enrolled :: Bool
 enrolled = False
@@ -25,6 +27,22 @@ init (x:xs) = x:init xs
 length :: [a] -> Int
 length (_:xs) = 1 + length xs
 length []     = 0
+
+sumInt :: [Int] -> Int
+sumInt (x:xs) = x + sumInt xs
+sumInt []     = 0
+
+productInt :: [Int] -> Int
+productInt (x:xs) = x * productInt xs
+productInt []     = 1
+
+sum :: Num a => [a] -> a
+sum (x:xs) = x + sum xs
+sum []     = 0
+
+product :: Num a => [a] -> a
+product (x:xs) = x * product xs
+product []     = 1
 
 reverse :: [a] -> [a]
 reverse = go []

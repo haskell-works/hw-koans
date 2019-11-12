@@ -42,6 +42,26 @@ prop_length = property $ do
   xs  <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
   K.length xs === P.length xs
 
+prop_sumInt :: Property
+prop_sumInt = property $ do
+  xs  <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
+  K.sumInt xs === P.sum xs
+
+prop_productInt :: Property
+prop_productInt = property $ do
+  xs  <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
+  K.productInt xs === P.product xs
+
+prop_sum :: Property
+prop_sum = property $ do
+  xs  <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
+  K.sum xs === P.sum xs
+
+prop_product :: Property
+prop_product = property $ do
+  xs  <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
+  K.product xs === P.product xs
+
 prop_reverse :: Property
 prop_reverse = property $ do
   xs  <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)

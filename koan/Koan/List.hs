@@ -29,6 +29,18 @@ init = error "TODO: implement init"
 length :: [a] -> Int
 length = error "TODO: implement length"
 
+sumInt :: [Int] -> Int
+sumInt = error "TODO: implement sumInt"
+
+productInt :: [Int] -> Int
+productInt = error "TODO: implement productInt"
+
+sum :: Num a => [a] -> a
+sum = error "TODO: implement sum"
+
+product :: Num a => [a] -> a
+product = error "TODO: implement product"
+
 -- Example:
 --   reverse [1, 2, 3, 4] = [4, 3, 2, 1]
 reverse :: [a] -> [a]

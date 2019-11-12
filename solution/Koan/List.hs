@@ -3,7 +3,7 @@ module Koan.List where
 import Koan.Applicative as K
 import Koan.Functor     as K
 import Koan.Monad       as K
-import Prelude          hiding (concat, head, init, last, length, reverse, tail, (++))
+import Prelude          hiding (concat, head, init, intercalate, intersperse, last, length, reverse, tail, transpose, (++))
 
 enrolled :: Bool
 enrolled = False
@@ -88,3 +88,11 @@ instance K.Applicative [] where
 
 instance K.Monad [] where
   (>>=) = flip bindList
+
+transpose :: [[a]] -> [[a]]
+transpose (as:ass) = go as (transpose ass)
+  where go :: [a] -> [[a]] -> [[a]]
+        go (a:as) (bs:bss) = (a:bs):go as bss
+        go (a:as) []       = [a]:go as []
+        go [] bss          = bss
+transpose [] = []

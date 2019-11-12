@@ -89,3 +89,6 @@ instance K.Applicative [] where
 
 instance K.Monad [] where
   (>>=) = error "TODO: Implement Monad (>>=) for []"
+
+transpose :: [[a]] -> [[a]]
+transpose = error "TODO: implement transpose"

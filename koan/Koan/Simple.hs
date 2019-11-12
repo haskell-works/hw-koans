@@ -166,6 +166,9 @@ uncurry = error "TODO: Implement uncurry"
 elem :: Eq a => a -> [a] -> Bool
 elem = error "TODO: Implement elem"
 
+group :: Eq a => [a] -> [[a]]
+group = error "TODO: Implement group"
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

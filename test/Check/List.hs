@@ -61,8 +61,8 @@ prop_concat_op = property $ do
 
 prop_concat :: Property
 prop_concat = property $ do
-  xs  <- forAll $ G.list (R.linear 0 10) $ G.list (R.linear 0 10) $ G.int R.constantBounded
-  K.concat xs === P.concat xs
+  xss  <- forAll $ G.list (R.linear 0 10) $ G.list (R.linear 0 10) $ G.int R.constantBounded
+  K.concat xss === P.concat xss
 
 prop_tails :: Property
 prop_tails = property $ do
@@ -110,6 +110,11 @@ prop_bind_op :: Property
 prop_bind_op = property $ do
   xs <- forAll $ G.list (R.linear 0 100) $ G.int R.constantBounded
   (xs K.>>= replicate 5) === (xs P.>>= replicate 5)
+
+prop_transpose_op :: Property
+prop_transpose_op = property $ do
+  xss <- forAll $ G.list (R.linear 0 10) $ G.list (R.linear 0 10) $ G.int R.constantBounded
+  K.transpose xss === P.transpose xss
 
 tests :: IO Bool
 tests = checkSequential $ reversed $$(discover)

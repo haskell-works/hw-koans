@@ -13,7 +13,7 @@ module Koan.Simple where
 
 -- This is just hiding some of the standard library, as we're implemeting a lot
 -- of it as an exercise.
-import           Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
+import Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
 
 enrolled :: Bool
 enrolled = False

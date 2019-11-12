@@ -1,6 +1,6 @@
 module Koan.Ord where
 
-import           Prelude hiding (max, maximum, min, minimum)
+import Prelude hiding (max, maximum, min, minimum)
 
 enrolled :: Bool
 enrolled = True

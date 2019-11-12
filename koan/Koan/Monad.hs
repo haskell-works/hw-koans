@@ -1,6 +1,6 @@
 module Koan.Monad where
 
-import           Prelude hiding (Monad, fmap, (<$), (<$>))
+import Prelude hiding (Monad, fmap, (<$), (<$>))
 
 enrolled :: Bool
 enrolled = False

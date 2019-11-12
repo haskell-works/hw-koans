@@ -1,10 +1,9 @@
 module Koan.List where
 
-import           Prelude hiding (concat, head, init, last, reverse, tail, (++))
-import           Koan.Functor     as K
-import           Koan.Applicative as K
-import           Koan.Monad       as K
-
+import Koan.Applicative as K
+import Koan.Functor     as K
+import Koan.Monad       as K
+import Prelude          hiding (concat, head, init, last, reverse, tail, (++))
 
 enrolled :: Bool
 enrolled = False

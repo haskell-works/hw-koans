@@ -1,12 +1,12 @@
-module Koan.GeoFeedParser
-where
+module Koan.GeoFeedParser where
 
-import           Control.Applicative
-import           Data.Attoparsec.ByteString.Char8
-import           Data.ByteString                  (ByteString)
-import qualified Data.ByteString.Char8            as BS
-import           Data.Char                        (digitToInt)
-import           Data.Semigroup                   ((<>))
+import Control.Applicative
+import Data.Attoparsec.ByteString.Char8
+import Data.ByteString                  (ByteString)
+import Data.Char                        (digitToInt)
+import Data.Semigroup                   ((<>))
+
+import qualified Data.ByteString.Char8 as BS
 
 enrolled :: Bool
 enrolled = True

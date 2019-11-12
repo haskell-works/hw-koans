@@ -34,6 +34,9 @@ length = error "TODO: implement length"
 reverse :: [a] -> [a]
 reverse = error "TODO: implement reverse"
 
+intersperse :: a-> [a] -> [a]
+intersperse = error "TODO: implement intersperse"
+
 -- Example:
 --   [1, 2] ++ [3, 4] = [1, 2, 3, 4]
 (++) :: [a] -> [a] -> [a]

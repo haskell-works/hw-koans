@@ -31,6 +31,10 @@ reverse = go []
   where go rs (x:xs) = go (x:rs) xs
         go rs []     = rs
 
+intersperse :: a-> [a] -> [a]
+intersperse x (a:b:bs) = a:x:intersperse x (b:bs)
+intersperse _ as       = as
+
 (++) :: [a] -> [a] -> [a]
 (++) (x:xs) ys = x:(xs ++ ys)
 (++) [] ys     = ys

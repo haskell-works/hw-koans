@@ -145,6 +145,11 @@ group (x:xs) = case slurp x xs of
         slurp _ bs = ([], bs)
 group [] = []
 
+isPrefixOf :: Eq a => [a] -> [a] -> Bool
+isPrefixOf (a:as) (b:bs) = if a == b then isPrefixOf as bs else False
+isPrefixOf [] bs         = True
+isPrefixOf _ _           = False
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

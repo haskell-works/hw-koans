@@ -26,6 +26,9 @@ last = error "TODO: implement last"
 init :: [a] -> [a]
 init = error "TODO: implement init"
 
+length :: [a] -> Int
+length = error "TODO: implement length"
+
 -- Example:
 --   reverse [1, 2, 3, 4] = [4, 3, 2, 1]
 reverse :: [a] -> [a]

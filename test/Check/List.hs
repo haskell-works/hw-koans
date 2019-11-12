@@ -37,6 +37,11 @@ prop_init = property $ do
   xs  <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
   K.init xs === P.init xs
 
+prop_length :: Property
+prop_length = property $ do
+  xs  <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
+  K.length xs === P.length xs
+
 prop_reverse :: Property
 prop_reverse = property $ do
   xs  <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)

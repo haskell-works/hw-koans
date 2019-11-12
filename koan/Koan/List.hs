@@ -52,6 +52,9 @@ concat = error "TODO: implement concat"
 tails :: [a] -> [[a]]
 tails = error "TODO: implement tails"
 
+intercalate :: [a] -> [[a]] -> [a]
+intercalate = error "TODO: implement intercalate"
+
 -- Example:
 --   mapList show [1, 2, 3, 4] = ["1", "2", "3", "4"]
 mapList :: (a -> b) -> [a] -> [b]

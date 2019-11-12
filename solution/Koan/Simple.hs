@@ -1,6 +1,9 @@
+{-# LANGUAGE NoImplicitPrelude #-}
+
 module Koan.Simple where
 
-import Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
+import Prelude (Bool (..), Eq (..), Int, Maybe (..), Num (..), Ord ((<), (<=), (>), (>=)))
+import Prelude (otherwise, tail, (&&), (||))
 
 enrolled :: Bool
 enrolled = False
@@ -102,6 +105,11 @@ any p = foldl (\b a -> b || p a) False
 
 all :: (a -> Bool) -> [a] -> Bool
 all p = foldl (\b a -> b && p a) True
+
+zip :: [a] -> [b] -> [(a, b)]
+zip [] _          = []
+zip _ []          = []
+zip (x:xs) (y:ys) = (x, y):zip xs ys
 
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith _ [] _           = []

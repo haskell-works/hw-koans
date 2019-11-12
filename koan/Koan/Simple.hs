@@ -11,9 +11,8 @@
 
 module Koan.Simple where
 
--- This is just hiding some of the standard library, as we're implemeting a lot
--- of it as an exercise.
-import Prelude hiding (all, any, const, curry, drop, dropWhile, elem, filter, flip, foldl, foldr, id, iterate, length, map, max, maximum, min, minimum, repeat, reverse, take, takeWhile, uncurry, zipWith, (!!), ($), (++), (.))
+import Prelude (Bool (..), Eq (..), Int, Maybe (..), Num (..), Ord ((<), (<=), (>), (>=)))
+import Prelude (error, otherwise, tail, (&&), (||))
 
 enrolled :: Bool
 enrolled = False
@@ -135,6 +134,9 @@ any = error "TODO: Implement any"
 
 all :: (a -> Bool) -> [a] -> Bool
 all = error "TODO: Implement all"
+
+zip :: [a] -> [b] -> [(a, b)]
+zip = error "TODO: Implement zip"
 
 -- This should take a binary (i.e. two argument) function, and two lists, and
 -- "zip" the elements of the list together pairwise using that function.

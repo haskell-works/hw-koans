@@ -47,6 +47,12 @@ prop_reverse = property $ do
   xs  <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
   K.reverse xs === P.reverse xs
 
+prop_intersperse :: Property
+prop_intersperse = property $ do
+  x   <- forAll $ G.int R.constantBounded
+  xs  <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  K.intersperse x xs === P.intersperse x xs
+
 prop_concat_op :: Property
 prop_concat_op = property $ do
   xs  <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)

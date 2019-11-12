@@ -1,10 +1,9 @@
 module Koan.Function where
 
-import           Prelude          hiding ((.), ($))
-
-import           Koan.Functor     as K
-import           Koan.Applicative as K
-import           Koan.Monad       as K
+import Koan.Applicative as K
+import Koan.Functor     as K
+import Koan.Monad       as K
+import Prelude          hiding (($), (.))
 
 enrolled :: Bool
 enrolled = True

@@ -1,6 +1,6 @@
 module Koan.Eq where
 
-import           Prelude hiding (elem, filter)
+import Prelude hiding (elem, filter)
 
 enrolled :: Bool
 enrolled = False

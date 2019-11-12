@@ -1,7 +1,7 @@
 module Koan.Either where
 
-import           Prelude          hiding (Either (..), isLeft, isRight, lefts, rights, either)
-import           Data.Bifunctor
+import Data.Bifunctor
+import Prelude        hiding (Either (..), either, isLeft, isRight, lefts, rights)
 
 enrolled :: Bool
 enrolled = True

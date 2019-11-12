@@ -1,10 +1,9 @@
 module Koan.List where
 
-import           Prelude hiding (concat, head, init, last, reverse, tail, (++))
-
-import           Koan.Functor     as K
-import           Koan.Applicative as K
-import           Koan.Monad       as K
+import Koan.Applicative as K
+import Koan.Functor     as K
+import Koan.Monad       as K
+import Prelude          hiding (concat, head, init, last, reverse, tail, (++))
 
 enrolled :: Bool
 enrolled = False
@@ -16,7 +15,7 @@ tail :: [a] -> [a]
 tail (_:xs) = xs
 
 last :: [a] -> a
-last [x] = x
+last [x]    = x
 last (_:xs) = last xs
 
 reverse :: [a] -> [a]
@@ -37,7 +36,7 @@ tails (x:xs) = (x:xs) : tails xs
 tails []     = [[]]
 
 mapList :: (a -> b) -> [a] -> [b]
-mapList _ [] = []
+mapList _ []     = []
 mapList f (x:xs) = f x : mapList f xs
 
 filterList :: (a -> Bool) -> [a] -> [a]
@@ -47,7 +46,7 @@ filterList p (x:xs)
   | otherwise = filterList p xs
 
 foldlList :: (b -> a -> b) -> b -> [a] -> b
-foldlList _  acc [] = acc
+foldlList _  acc []     = acc
 foldlList op acc (x:xs) = foldlList op (op acc x) xs
 
 foldrList :: (a -> b -> b) -> b -> [a] -> b
@@ -56,12 +55,12 @@ foldrList op acc (x:xs) = op x (foldrList op acc xs)
 
 -- Note that those are square brackets, not round brackets.
 applyList :: [a -> b] -> [a] -> [b]
-applyList [] _ = []
-applyList _ [] = []
+applyList [] _      = []
+applyList _ []      = []
 applyList (f:fs) xs = (f K.<$> xs) ++ applyList fs xs
 
 bindList :: (a -> [b]) -> [a] -> [b]
-bindList _ [] = []
+bindList _ []     = []
 bindList f (x:xs) = f x ++ bindList f xs
 
 instance K.Functor [] where

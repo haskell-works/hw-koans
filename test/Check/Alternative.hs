@@ -2,12 +2,12 @@
 
 module Check.Alternative where
 
-import qualified Koan.Applicative as K
+import Hedgehog
+import Hedgehog.Extra
 
-import           Hedgehog
-import           Hedgehog.Extra
-import qualified Hedgehog.Gen     as Gen
-import qualified Hedgehog.Range   as Range
+import qualified Hedgehog.Gen     as G
+import qualified Hedgehog.Range   as R
+import qualified Koan.Applicative as K
 
 {-# ANN module ("HLint: ignore Redundant do"  :: String) #-}
 

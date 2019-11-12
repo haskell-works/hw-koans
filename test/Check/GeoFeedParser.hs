@@ -18,8 +18,8 @@ import qualified Koan.GeoFeedParser               as K
 import Hedgehog
 import Hedgehog.Extra
 
-import qualified Hedgehog.Gen   as Gen
-import qualified Hedgehog.Range as Range
+import qualified Hedgehog.Gen   as G
+import qualified Hedgehog.Range as R
 
 {-# ANN module ("HLint: ignore Redundant do"        :: String) #-}
 {-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
@@ -27,49 +27,49 @@ import qualified Hedgehog.Range as Range
 
 prop_digitsToInt :: Property
 prop_digitsToInt = property $ do
-  x <- forAll $ Gen.int (Range.linear 0 255)
+  x <- forAll $ G.int (R.linear 0 255)
   K.digitsToInt (show x) === x
 
 prop_int :: Property
 prop_int = property $ do
-  x <- forAll $ Gen.int (Range.linear 0 255)
+  x <- forAll $ G.int (R.linear 0 255)
   runParserShow K.int x === Right x
 
 prop_int_fail_string :: Property
 prop_int_fail_string = property $ do
-  s <- forAll $ Gen.string (Range.linear 1 3) Gen.alpha
-  x <- forAll $ Gen.string (Range.linear 1 10) Gen.alphaNum
+  s <- forAll $ G.string (R.linear 1 3) G.alpha
+  x <- forAll $ G.string (R.linear 1 10) G.alphaNum
   runParser K.int (BSC.pack $ s <> x) === Left "digit: Failed reading: satisfyWith"
 
 prop_octet :: Property
 prop_octet = property $ do
-  x <- forAll $ Gen.int (Range.linear 256 9999)
+  x <- forAll $ G.int (R.linear 256 9999)
   let res = runParserShow K.octet x
   left (const "") res === Left ""
 
 prop_dot :: Property
 prop_dot = property $ do
-  s <- forAll $ Gen.string (Range.linear 1 3) Gen.alpha
+  s <- forAll $ G.string (R.linear 1 3) G.alpha
   left (const "") (runParserStr K.dot s) === Left ""
   runParserStr K.dot ('.':s) === Right '.'
 
 prop_separator :: Property
 prop_separator = property $ do
-  s <- forAll $ Gen.string (Range.linear 1 3) Gen.alpha
+  s <- forAll $ G.string (R.linear 1 3) G.alpha
   left (const "") (runParserStr K.separator s) === Left ""
   runParserStr K.separator ('|':s) === Right '|'
 
 prop_ipv4 :: Property
 prop_ipv4 = property $ do
-  vs@[a,b,c,d] <- forAll $ Gen.list (Range.singleton 4) (Gen.int (Range.linear 0 255))
-  s <- forAll $ Gen.string (Range.linear 1 3) Gen.alpha
+  vs@[a,b,c,d] <- forAll $ G.list (R.singleton 4) (G.int (R.linear 0 255))
+  s <- forAll $ G.string (R.linear 1 3) G.alpha
   let str = intercalate "." (show <$> vs)
   runParserStr K.ipv4 str === Right (K.IPv4 a b c d)
   left (const "") (runParserStr K.ipv4 (s <> str)) === Left ""
 
 prop_countryCode :: Property
 prop_countryCode = property $ do
-  s <- forAll $ Gen.string (Range.linear 1 3) Gen.alpha
+  s <- forAll $ G.string (R.linear 1 3) G.alpha
   runParserStr K.countryCode s === Right (K.CountryCode s)
 
 tests :: IO Bool

@@ -47,6 +47,10 @@ tails :: [a] -> [[a]]
 tails (x:xs) = (x:xs) : tails xs
 tails []     = [[]]
 
+intercalate :: [a] -> [[a]] -> [a]
+intercalate xs (as:bs:bss) = as ++ xs ++ intercalate xs (bs:bss)
+intercalate _ ass          = concat ass
+
 mapList :: (a -> b) -> [a] -> [b]
 mapList _ []     = []
 mapList f (x:xs) = f x : mapList f xs

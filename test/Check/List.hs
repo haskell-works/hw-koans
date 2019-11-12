@@ -69,6 +69,12 @@ prop_tails = property $ do
   xs  <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
   K.tails xs === P.tails xs
 
+prop_intercalate :: Property
+prop_intercalate = property $ do
+  x   <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  xss <- forAll $ G.list (R.linear 0 100) (G.list (R.linear 0 100) (G.int R.constantBounded))
+  K.intercalate x xss === P.intercalate x xss
+
 prop_mapList :: Property
 prop_mapList = property $ do
   xs <- forAll $ G.list (R.linear 0 100) $ G.int R.constantBounded

@@ -3,7 +3,7 @@ module Koan.List where
 import Koan.Applicative as K
 import Koan.Functor     as K
 import Koan.Monad       as K
-import Prelude          hiding (concat, head, init, last, reverse, tail, (++))
+import Prelude          hiding (concat, head, init, last, length, reverse, tail, (++))
 
 enrolled :: Bool
 enrolled = False
@@ -21,6 +21,10 @@ last (_:xs) = last xs
 init :: [a] -> [a]
 init [x]    = []
 init (x:xs) = x:init xs
+
+length :: [a] -> Int
+length (_:xs) = 1 + length xs
+length []     = 0
 
 reverse :: [a] -> [a]
 reverse = go []

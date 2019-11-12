@@ -131,6 +131,12 @@ prop_all = property $ do
   as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
   K.all even as === P.all even as
 
+prop_zip :: Property
+prop_zip = property $ do
+  as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  bs <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  K.zip as bs === P.zip as bs
+
 prop_zipWith :: Property
 prop_zipWith = property $ do
   as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)

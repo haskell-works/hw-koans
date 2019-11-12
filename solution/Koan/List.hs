@@ -18,6 +18,10 @@ last :: [a] -> a
 last [x]    = x
 last (_:xs) = last xs
 
+init :: [a] -> [a]
+init [x]    = []
+init (x:xs) = x:init xs
+
 reverse :: [a] -> [a]
 reverse = go []
   where go rs (x:xs) = go (x:rs) xs

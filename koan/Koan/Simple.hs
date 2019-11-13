@@ -169,6 +169,9 @@ elem = error "TODO: Implement elem"
 group :: Eq a => [a] -> [[a]]
 group = error "TODO: Implement group"
 
+isPrefixOf :: Eq a => [a] -> [a] -> Bool
+isPrefixOf = error "TODO: Implement isPrefixOf"
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

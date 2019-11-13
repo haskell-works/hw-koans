@@ -162,6 +162,12 @@ prop_group = property $ do
   as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
   K.group as === P.group as
 
+prop_isPrefixOf :: Property
+prop_isPrefixOf = property $ do
+  as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  bs <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  K.isPrefixOf as bs === P.isPrefixOf as bs
+
 prop_max :: Property
 prop_max = property $ do
   a <- forAll $ G.int R.constantBounded

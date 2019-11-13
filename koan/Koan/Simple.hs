@@ -175,6 +175,9 @@ isPrefixOf = error "TODO: Implement isPrefixOf"
 isSuffixOf :: Eq a => [a] -> [a] -> Bool
 isSuffixOf = error "TODO: Implement isSuffixOf"
 
+isInfixOf :: Eq a => [a] -> [a] -> Bool
+isInfixOf = error "TODO: Implement isInfixOf"
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

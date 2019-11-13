@@ -208,6 +208,11 @@ prop_minimum = property $ do
   as <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
   K.minimum as === P.minimum as
 
+prop_sort :: Property
+prop_sort = property $ do
+  as <- forAll $ G.list (R.linear 1 100) (G.int R.constantBounded)
+  K.sort as === P.sort as
+
 prop_fibonacci :: Property
 prop_fibonacci = property $ do
   i <- forAll $ G.int (R.linear 0 100)

@@ -181,6 +181,9 @@ isInfixOf = error "TODO: Implement isInfixOf"
 isSubsequenceOf :: Eq a => [a] -> [a] -> Bool
 isSubsequenceOf = error "TODO: Implement isSubsequenceOf"
 
+sort :: Ord a => [a] -> [a]
+sort = error "TODO: Implement sort"
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

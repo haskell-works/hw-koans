@@ -181,6 +181,10 @@ maximum (x:xs) = foldr max x xs
 minimum :: Ord a => [a] -> a
 minimum (x:xs) = foldr min x xs
 
+sort :: Ord a => [a] -> [a]
+sort (a:as) = sort (filter (< a) as) ++ [a] ++ sort (filter (>= a) as)
+sort []     = []
+
 --------------------------------------------------------------------------------
 -- Miscellaneous Exercises
 --------------------------------------------------------------------------------

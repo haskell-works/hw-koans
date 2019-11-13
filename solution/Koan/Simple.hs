@@ -136,6 +136,15 @@ elem e (x:xs)
   | e == x    = True
   | otherwise = e `elem` xs
 
+group :: Eq a => [a] -> [[a]]
+group (x:xs) = case slurp x xs of
+  (ys, zs) -> (x:ys):group zs
+  where slurp :: Eq a => a -> [a] -> ([a], [a])
+        slurp a (b:bs) | a == b = (b:cs, ds)
+          where (cs, ds) = slurp a bs
+        slurp _ bs = ([], bs)
+group [] = []
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

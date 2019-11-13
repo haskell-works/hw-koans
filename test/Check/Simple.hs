@@ -9,6 +9,7 @@ import Hedgehog.Gen   as G
 import Hedgehog.Range as R
 import Prelude        as P
 
+import qualified Data.List   as P
 import qualified Koan.Simple as K
 
 prop_id :: Property
@@ -155,6 +156,11 @@ prop_elem = property $ do
   a <- forAll $ G.int R.constantBounded
   as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
   K.elem a as === P.elem a as
+
+prop_group :: Property
+prop_group = property $ do
+  as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  K.group as === P.group as
 
 prop_max :: Property
 prop_max = property $ do

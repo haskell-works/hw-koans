@@ -172,6 +172,9 @@ group = error "TODO: Implement group"
 isPrefixOf :: Eq a => [a] -> [a] -> Bool
 isPrefixOf = error "TODO: Implement isPrefixOf"
 
+isSuffixOf :: Eq a => [a] -> [a] -> Bool
+isSuffixOf = error "TODO: Implement isSuffixOf"
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

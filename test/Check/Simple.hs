@@ -180,6 +180,12 @@ prop_isInfixOf = property $ do
   bs <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
   K.isInfixOf as bs === P.isInfixOf as bs
 
+prop_isSubsequenceOf :: Property
+prop_isSubsequenceOf = property $ do
+  as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  bs <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  K.isSubsequenceOf as bs === P.isSubsequenceOf as bs
+
 prop_max :: Property
 prop_max = property $ do
   a <- forAll $ G.int R.constantBounded

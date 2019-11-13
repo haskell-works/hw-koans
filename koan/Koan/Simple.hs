@@ -178,6 +178,9 @@ isSuffixOf = error "TODO: Implement isSuffixOf"
 isInfixOf :: Eq a => [a] -> [a] -> Bool
 isInfixOf = error "TODO: Implement isInfixOf"
 
+isSubsequenceOf :: Eq a => [a] -> [a] -> Bool
+isSubsequenceOf = error "TODO: Implement isSubsequenceOf"
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

@@ -160,6 +160,11 @@ isInfixOf as bs = if as `isPrefixOf` bs
     (c:cs) -> as `isInfixOf` cs
     []     -> False
 
+isSubsequenceOf :: Eq a => [a] -> [a] -> Bool
+isSubsequenceOf aas@(a:as) bss@(b:bs) = (a == b && isSubsequenceOf as bs) || isSubsequenceOf aas bs
+isSubsequenceOf [] _                  = True
+isSubsequenceOf _ []                  = False
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

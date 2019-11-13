@@ -150,6 +150,16 @@ isPrefixOf (a:as) (b:bs) = if a == b then isPrefixOf as bs else False
 isPrefixOf [] bs         = True
 isPrefixOf _ _           = False
 
+isSuffixOf :: Eq a => [a] -> [a] -> Bool
+isSuffixOf as bs = isPrefixOf (reverse as) (reverse bs)
+
+isInfixOf :: Eq a => [a] -> [a] -> Bool
+isInfixOf as bs = if as `isPrefixOf` bs
+  then True
+  else case bs of
+    (c:cs) -> as `isInfixOf` cs
+    []     -> False
+
 --------------------------------------------------------------------------------
 -- Functions require Ordering
 --------------------------------------------------------------------------------

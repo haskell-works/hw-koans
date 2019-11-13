@@ -168,6 +168,18 @@ prop_isPrefixOf = property $ do
   bs <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
   K.isPrefixOf as bs === P.isPrefixOf as bs
 
+prop_isSuffixOf :: Property
+prop_isSuffixOf = property $ do
+  as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  bs <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  K.isSuffixOf as bs === P.isSuffixOf as bs
+
+prop_isInfixOf :: Property
+prop_isInfixOf = property $ do
+  as <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  bs <- forAll $ G.list (R.linear 0 100) (G.int R.constantBounded)
+  K.isInfixOf as bs === P.isInfixOf as bs
+
 prop_max :: Property
 prop_max = property $ do
   a <- forAll $ G.int R.constantBounded

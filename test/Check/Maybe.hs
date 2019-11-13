@@ -4,17 +4,18 @@
 
 module Check.Maybe where
 
-import qualified Data.List      as P
-import qualified Hedgehog.Gen   as G
-import qualified Hedgehog.Range as R
-import qualified Prelude        as P
-
 import Control.Applicative
 import Data.Maybe
 import Hedgehog
 import Hedgehog.Extra
 import Koan.Maybe          as K
 import Prelude             hiding (elem, filter)
+
+import qualified Data.List      as P
+import qualified Data.Maybe     as P
+import qualified Hedgehog.Gen   as G
+import qualified Hedgehog.Range as R
+import qualified Prelude        as P
 
 {-# ANN module ("HLint: Reduce duplication" :: String) #-}
 
@@ -33,11 +34,21 @@ unk :: K.Maybe a -> P.Maybe a
 unk (K.Just a) = P.Just a
 unk K.Nothing  = P.Nothing
 
-prop_orElse :: Property
-prop_orElse = property $ do
+prop_isJust :: Property
+prop_isJust = property $ do
+  ma  <- forAll $ G.maybe (G.int R.constantBounded)
+  K.isJust (enk ma) === P.isJust ma
+
+prop_isNothing :: Property
+prop_isNothing = property $ do
+  ma  <- forAll $ G.maybe (G.int R.constantBounded)
+  K.isNothing (enk ma) === P.isNothing ma
+
+prop_fromMaybe :: Property
+prop_fromMaybe = property $ do
   ma  <- forAll $ G.maybe (G.int R.constantBounded)
   b   <- forAll $ G.int R.constantBounded
-  enk ma `K.orElse` b === fromMaybe b ma
+  K.fromMaybe b (enk ma) === P.fromMaybe b ma
 
 prop_orMaybe :: Property
 prop_orMaybe = property $ do
@@ -50,15 +61,20 @@ prop_mapMaybe = property $ do
   mb  <- forAll $ G.maybe (G.int R.constantBounded)
   unk ((+1) `K.mapMaybe` enk mb) === ((+1) <$> mb)
 
-prop_concatMaybes :: Property
-prop_concatMaybes = property $ do
+prop_maybe :: Property
+prop_maybe = property $ do
+  mb  <- forAll $ G.maybe (G.int R.constantBounded)
+  unk ((+1) `K.mapMaybe` enk mb) === ((+1) <$> mb)
+
+prop_catMaybes :: Property
+prop_catMaybes = property $ do
   ma  <- forAll $ G.list (R.linear 1 100) (G.maybe (G.int R.constantBounded))
-  K.concatMaybes (enk <$> ma) === catMaybes ma
+  K.catMaybes (enk <$> ma) === P.catMaybes ma
 
 prop_filterMaybe :: Property
 prop_filterMaybe = property $ do
   ma  <- forAll $ G.maybe (G.int R.constantBounded)
-  unk (K.filterMaybe even (enk ma)) === listToMaybe (P.filter even (catMaybes [ma]))
+  unk (K.filterMaybe even (enk ma)) === listToMaybe (P.filter even (P.catMaybes [ma]))
 
 prop_foldMaybe :: Property
 prop_foldMaybe = property $ do

@@ -1,6 +1,6 @@
 module Koan.Maybe where
 
-import Prelude hiding (Maybe (..))
+import Prelude hiding (Maybe (..), maybe)
 
 enrolled :: Bool
 enrolled = False
@@ -12,10 +12,18 @@ enrolled = False
 
 data Maybe a = Nothing | Just a deriving (Eq, Show)
 
+-- This should return the `True` if the 'Maybe' contains a value and `False` otherwise
+isJust :: Maybe a -> Bool
+isJust = error "TODO: Implement isJust"
+
+-- This should return the `True` if the 'Maybe' is empty and `False` otherwise
+isNothing :: Maybe a -> Bool
+isNothing = error "TODO: Implement isNothing"
+
 -- This should return the contents of the 'Maybe' if it exists, otherwise
 -- it should return the provided value.
-orElse :: Maybe a -> a -> a
-orElse = error "TODO: Implement orElse"
+fromMaybe :: a -> Maybe a -> a
+fromMaybe = error "TODO: Implement fromMaybe"
 
 -- This should return the first Maybe if there's something in it.
 -- If not, it should return the second Maybe (regardless of whether its empty
@@ -27,10 +35,13 @@ orMaybe = error "TODO: Implement orMaybe"
 mapMaybe :: (a -> b) -> Maybe a -> Maybe b
 mapMaybe = error "TODO: Implement mapMaybe"
 
+maybe :: b -> (a -> b) -> Maybe a -> b
+maybe = error "TODO: Implement maybe"
+
 -- Concatenate all the Maybes in the input list, so that you end up with only
 -- the ones that have something in them.
-concatMaybes :: [Maybe a] -> [a]
-concatMaybes = error "TODO: Implement concatMaybes"
+catMaybes :: [Maybe a] -> [a]
+catMaybes = error "TODO: Implement catMaybes"
 
 -- Filter for Maybes.  Think of Maybes as a collection of at most one element.
 -- This function should remove all elements that fail the predicate (a -> Bool)

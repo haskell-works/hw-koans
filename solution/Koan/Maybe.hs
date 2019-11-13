@@ -7,9 +7,17 @@ enrolled = False
 
 data Maybe a = Nothing | Just a deriving (Eq, Show)
 
-orElse :: Maybe a -> a -> a
-orElse Nothing x  = x
-orElse (Just a) _ = a
+isJust :: Maybe a -> Bool
+isJust (Just _) = True
+isJust Nothing  = False
+
+isNothing :: Maybe a -> Bool
+isNothing (Just _) = False
+isNothing Nothing  = True
+
+fromMaybe :: a -> Maybe a -> a
+fromMaybe x Nothing  = x
+fromMaybe _ (Just a) = a
 
 orMaybe :: Maybe a -> Maybe a -> Maybe a
 orMaybe (Just x) _  = Just x
@@ -19,11 +27,15 @@ mapMaybe :: (a -> b) -> Maybe a -> Maybe b
 mapMaybe _  Nothing = Nothing
 mapMaybe f (Just x) = Just (f x)
 
-concatMaybes :: [Maybe a] -> [a]
-concatMaybes [] = []
-concatMaybes (mx:mxs) = case mx of
-  Nothing -> concatMaybes mxs
-  Just x  -> x : concatMaybes mxs
+maybe :: b -> (a -> b) -> Maybe a -> b
+maybe _ f (Just a) = f a
+maybe b _ Nothing  = b
+
+catMaybes :: [Maybe a] -> [a]
+catMaybes [] = []
+catMaybes (mx:mxs) = case mx of
+  Nothing -> catMaybes mxs
+  Just x  -> x : catMaybes mxs
 
 filterMaybe :: (a -> Bool) -> Maybe a -> Maybe a
 filterMaybe _ Nothing = Nothing

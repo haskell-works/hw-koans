@@ -60,7 +60,7 @@ runTests = IO.unsafePerformIO $ do
             else do
               IO.putStrLn "Solutions tests not run.  Run `touch run-solutions.conf` to enable."
               return False
-    else return False
+    else return True
 
 {- | Returns a count of the number of times the given element occured in the
 given list. -}

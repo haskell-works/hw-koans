@@ -6,7 +6,6 @@ module Check.GeoFeedParser where
 
 import Control.Arrow  (left)
 import Data.List      (intercalate)
-import Data.Semigroup ((<>))
 
 import qualified Control.Monad.Fail               as P
 import qualified Data.Attoparsec.ByteString       as P (skip)

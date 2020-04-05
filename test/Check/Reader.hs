@@ -4,7 +4,6 @@
 
 module Check.Reader where
 
-import Data.Semigroup ((<>))
 import Hedgehog
 import Hedgehog.Extra
 

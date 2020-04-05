@@ -2,7 +2,6 @@ module Main where
 
 import Control.Monad
 import Data.Maybe
-import Data.Monoid
 
 import qualified Check.Alternative
 import qualified Check.Applicative

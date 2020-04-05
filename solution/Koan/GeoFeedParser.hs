@@ -4,7 +4,6 @@ import Control.Applicative
 import Data.Attoparsec.ByteString.Char8
 import Data.ByteString                  (ByteString)
 import Data.Char                        (digitToInt)
-import Data.Semigroup                   ((<>))
 
 import qualified Data.ByteString.Char8 as BS
 

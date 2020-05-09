@@ -4,8 +4,8 @@
 
 module Check.GeoFeedParser where
 
-import Control.Arrow  (left)
-import Data.List      (intercalate)
+import Control.Arrow (left)
+import Data.List     (intercalate)
 
 import qualified Control.Monad.Fail               as P
 import qualified Data.Attoparsec.ByteString       as P (skip)
@@ -20,9 +20,9 @@ import Hedgehog.Extra
 import qualified Hedgehog.Gen   as G
 import qualified Hedgehog.Range as R
 
-{-# ANN module ("HLint: ignore Redundant do"        :: String) #-}
-{-# ANN module ("HLint: ignore Reduce duplication"  :: String) #-}
-{-# ANN module ("HLint: ignore Redundant bracket"   :: String) #-}
+{- HLINT ignore "Redundant do"        -}
+{- HLINT ignore "Redundant bracket"   -}
+{- HLINT ignore "Reduce duplication"  -}
 
 prop_digitsToInt :: Property
 prop_digitsToInt = property $ do

@@ -17,7 +17,7 @@ import qualified Hedgehog.Gen   as G
 import qualified Hedgehog.Range as R
 import qualified Prelude        as P
 
-{-# ANN module ("HLint: Reduce duplication" :: String) #-}
+{- HLINT ignore "Reduce duplication"  -}
 
 genMaybe :: MonadGen m => m a -> m (K.Maybe a)
 genMaybe g = do

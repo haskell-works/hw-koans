@@ -9,7 +9,7 @@ import qualified Hedgehog.Gen     as G
 import qualified Hedgehog.Range   as R
 import qualified Koan.Applicative as K
 
-{-# ANN module ("HLint: ignore Redundant do"  :: String) #-}
+{- HLINT ignore "Redundant do"        -}
 
 prop_simple :: Property
 prop_simple = property $ do
